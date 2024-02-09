@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{{ asset('bundles/krzyspage/css/style.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox-buttons.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox-thumbs.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/bootstrap.min.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley" />
+{% javascripts
+        '@KrzysPageBundle/Resources/public/js/jquery-1.11.3.min.js'
+        '@KrzysPageBundle/Resources/public/js/jquery-ui.min.js'
+        '@KrzysPageBundle/Resources/public/js/jquery.mousewheel-3.0.6.pack.js'
+        '@NailitGalleryBundle/Resources/public/js/jquery.fancybox.js'
+        '@NailitGalleryBundle/Resources/public/js/jquery.fancybox.pack.js'
+        '@NailitGalleryBundle/Resources/public/js/jquery.fancybox-buttons.js'
+        '@NailitGalleryBundle/Resources/public/js/jquery.fancybox-thumbs.js'
+        '@KrzysPageBundle/Resources/public/js/functions1.js'
+        '@NailitGalleryBundle/Resources/public/js/bootstrap.min.js'
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+    <title>{{ page_title }}</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
+</head>
+<body>
+<div id="symfony-wrapper">
+    <div id="symfony-header">
+
+        <a>
+            <img src="{{ asset('bundles/krzyspage/images/logo-DFDFDF.jpg') }}" alt="Krzyś">
+        </a>
+        <h3>...& Zosia ;D</h3>
+        <div id="filter" class="right" title="{{ path('session') }}">
+            <div><input type="radio" name="filter" value="0" {% if(app.session.get('tag') == 0) %}checked="checked"{% endif %} />Wszystko</div>
+            <div><input type="radio" name="filter" value="1" {% if(app.session.get('tag') == 1) %}checked="checked"{% endif %} />Krzyś</div>
+            <div><input type="radio" name="filter" value="2" {% if(app.session.get('tag') == 2) %}checked="checked"{% endif %} />Zosia</div>
+        </div>
+
+        <div class="menu">
+            <a href="{{ path('evolution') }}">Galeria jednego zdjęcia</a>
+            <span>|</span>
+            <a href="{{ path('best') }}">The best of</a>
+            <span>|</span>
+            <a href="{{ path('video') }}">Video</a>
+            <span>|</span>
+            <a href="{{ path('page') }}">Wszystko</a>
+        </div>
+    </div>
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-message">
+            <em>Notice</em>: {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% block content_header %}
+
+        <div style="clear: both"></div>
+    {% endblock %}
+
+    <div class="symfony-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</div>
+</body>
+</html>

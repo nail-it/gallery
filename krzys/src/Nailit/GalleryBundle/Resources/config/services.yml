@@ -1,0 +1,7 @@
+parameters:
+#    nailit_gallery.example.class: Nailit\GalleryBundle\Example
+
+services:
+#    nailit_gallery.example:
+#        class: %nailit_gallery.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

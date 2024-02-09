@@ -1,0 +1,31 @@
+{% import _self as renderCalendar %}
+
+{% set months = {'1': 'styczeń', '2': 'luty', '3': 'marzec','4': 'kwiecień','5': 'maj','6': 'czerwiec','7': 'lipiec','8': 'sierpień','9': 'wrzesień','10': 'październik','11': 'listopad','12': 'grudzień'} %}
+
+{% macro line(selectedMonth, selectedYear, months, i, j) %}
+    <a href="{{ path('pageMonth', { 'year': i, 'month': j }) }}" class="{% if(selectedMonth == j and selectedYear == i) %}active {% endif %}">{{ months[j] }}</a> {% if j != 01 %} | {% endif %}
+{% endmacro %}
+
+<div id="calendar-years">
+    {% for i in "now"|date('Y')..dateStart.year %}
+        <a class="open-months {% if(selectedYear == i) %}active {% endif %}" title="{{ i }}">{{ i }}</a> {% if i != dateStart.year %} | {% endif %}
+    {% endfor %}
+</div>
+
+{% for i in "now"|date('Y')..dateStart.year %}
+    <div class="calendar-months calendar-months-{{ i }}" style="{% if(selectedYear == i) %}display: inline; {%else%} display: none; {% endif %}">
+        {% if i == "now"|date('Y') %}
+            {% for j in "now"|date('m')..01 %}
+                {{ renderCalendar.line(selectedMonth, selectedYear, months, i, j) }}
+            {% endfor %}
+        {% elseif i == dateStart.year %}
+            {% for j in 12..dateStart.month %}
+                {{ renderCalendar.line(selectedMonth, selectedYear, months, i, j) }}
+            {% endfor %}
+        {% else %}
+            {% for j in 12..01 %}
+                {{ renderCalendar.line(selectedMonth, selectedYear, months, i, j) }}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endfor %}

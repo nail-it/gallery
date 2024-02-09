@@ -1,0 +1,19 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+NailitGalleryBundle:
+  resource: "@NailitGalleryBundle/Resources/config/routing.yml"
+  prefix:   /
+
+KrzysPageBundle:
+  resource: "@KrzysPageBundle/Resources/config/routing.yml"
+  prefix:   /
+
+login:
+  path:   /login
+  controller: KrzysSecurityBundle:Default:login
+
+login_check:
+  path:   /login_check
+  controller: KrzysPageBundle:Default:index

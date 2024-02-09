@@ -1,0 +1,134 @@
+{% extends "KrzysPageBundle::layout.html.twig" %}
+
+{% block title "Krzyś " %}
+
+{% block content_header '' %}
+
+{% block content %}
+<div id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
+<h1>/* Oto jesteśmy! */</h1>
+
+{% set months = {'1': 'styczeń', '2': 'luty', '3': 'marzec','4': 'kwiecień','5': 'maj','6': 'czerwiec','7': 'lipiec','8': 'sierpień','9': 'wrzesień','10': 'październik','11': 'listopad','12': 'grudzień'} %}
+
+{% macro line(selectedMonth, selectedYear, months, i, j) %}
+  <a href="{{ path('pageAdminMonth', { 'year': i, 'month': j }) }}" class="{% if(selectedMonth == j and selectedYear == i) %}active {% endif %}">{{ months[j] }}</a> {% if j != 01 %} | {% endif %}
+{% endmacro %}
+
+<div id="calendar-years">
+  {% for i in "now"|date('Y')..dateStart.year %}
+    <a class="open-months {% if(selectedYear == i) %}active {% endif %}" title="{{ i }}">{{ i }}</a> {% if i != dateStart.year %} | {% endif %}
+  {% endfor %}
+</div>
+
+{% for i in "now"|date('Y')..dateStart.year %}
+<div class="calendar-months calendar-months-{{ i }}" style="{% if(selectedYear == i) %}display: inline; {%else%} display: none; {% endif %}">
+  {% if i == "now"|date('Y') %}
+    {% for j in "now"|date('m')..01 %}
+      {{ _self.line(selectedMonth, selectedYear, months, i, j) }}
+    {% endfor %}
+  {% elseif i == dateStart.year %}
+    {% for j in 12..dateStart.month %}
+      {{ _self.line(selectedMonth, selectedYear, months, i, j) }}
+    {% endfor %}
+  {% else %}
+    {% for j in 12..01 %}
+      {{ _self.line(selectedMonth, selectedYear, months, i, j) }}
+    {% endfor %}
+  {% endif %} 
+</div> 
+{% endfor %}
+
+<br /><br />
+<a href="{{ path('page_log') }}">log</a><br />
+<a href="http://krzys.gwozdz.info/drw">evolution without links</a>(<a href="http://krzys.gwozdz.info/session?tag=1&r=drw">krzys evolution</a>, <a href="http://zosia.gwozdz.info/session?tag=2&r=drw">zosia evolution</a>)<br />
+<a href="http://krzys.gwozdz.info/spr">best without links</a><br />
+{#    <span class="incoming-process glyphicon glyphicon-user tag-all" id="{{ path('tagAll', { limit: 100000, select: 2 }) }}">Tag all</span><br /> #}
+    <span class="incoming-process glyphicon glyphicon-forward" id="{{ path('incomingAmount', {}) }}" title="{{ path('incoming', {}) }}">Process incoming</span> <div id="incoming-block" style="display: none;"><span id="amount-current">0</span>/<span id="amount-all"></span></div>
+  <br />
+
+{% for yearName, year in files %}
+    {% for monthName, month in year %}
+        {% for dayN in 1..31 %}
+            {% set dayNumber = (dayN < 10) ? '0'~dayN : dayN %}
+            {% if month[dayNumber] is defined %}
+                {% set day = month[dayNumber] %}
+                <div class="admin-header">
+                {{ dayNumber }}.{{ monthName }}.{{ yearName }} <span class="day-no" title="zarywamy nocki od {{ day[0].amountDays }} dni">dzień {{ day[0].amountDays }} ({{ day[0].amountWeeks }} tydzień)</span>
+                <a href="{{ path('pageOneDay', { 'parameter': day[0].dayCode }) }}">link</a>
+                <br />
+                    {% if main_path == 'krzys' %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="description-day dau">
+                            <span class="avatar avatar-dau"></span>
+                            <input type="text" class="description-day dau" value="{{ day[0].descriptionDayDau }}" id="{{ path('description', { 'year': day[0].year, 'month': day[0].month, 'day': day[0].day, 'file': 'text3' }) }}" />
+                            </div>
+                        {% endif %}
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="description-day son">
+                            <span class="avatar avatar-son"></span>
+                            <input type="text" class="description-day son" value="{{ day[0].descriptionDaySon }}" id="{{ path('description', { 'year': day[0].year, 'month': day[0].month, 'day': day[0].day, 'file': 'text' }) }}" />
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="description-day dau">
+                                <span class="avatar avatar-gg"></span>
+                                <input type="text" class="description-day dau" value="{{ day[0].descriptionDayDau }}" id="{{ path('description', { 'year': day[0].year, 'month': day[0].month, 'day': day[0].day, 'file': 'text3' }) }}" />
+                            </div>
+                        {% endif %}
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="description-day son">
+                                <span class="avatar avatar-ag"></span>
+                                <input type="text" class="description-day son" value="{{ day[0].descriptionDaySon }}" id="{{ path('description', { 'year': day[0].year, 'month': day[0].month, 'day': day[0].day, 'file': 'text' }) }}" />
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="description-day mom">
+                    <span class="avatar avatar-mom"></span>
+                    <input type="text" class="description-day mom" value="{{ day[0].descriptionDayMom }}" id="{{ path('description', { 'year': day[0].year, 'month': day[0].month, 'day': day[0].day, 'file': 'text1' }) }}" />
+                    </div>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="description-day dad">
+                        <span class="avatar avatar-dad"></span>
+                        <input type="text" class="description-day dad" value="{{ day[0].descriptionDayDad }}" id="{{ path('description', { 'year': day[0].year, 'month': day[0].month, 'day': day[0].day, 'file': 'text2' }) }}" />
+                    </div>
+                {% endif %}
+                </div>
+                {% for pic in day %}
+                    {% if is_granted('ROLE_ADMIN') and pic.name != '' %}
+                        <div class="admin-item selected{{ pic.tag }} container-fluid">
+                        <span class="admin-picture ui-widget-content ui-corner-tr" id="{{ path('tag', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name }) }}" title="{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/{{ pic.name }}">
+                        {% include 'KrzysPageBundle:Default:single-image.html.twig' %}
+                        </span>
+                        <div class="actions row">
+                        {% if(pic.tag != '') %}
+                            <span class="evolution-add glyphicon glyphicon-signal col-xs-2" name="{{ day[0].amountWeeks }}" title="great for evolution?" {% if pic.evolution == true %} checked="checked" {% endif %} value="{{ path('evolutionAdd', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name, 'tag': pic.tag, 'week': day[0].amountWeeks }) }}" id="{{ path('evolutionAdd', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name, 'tag': pic.tag, 'week': day[0].amountWeeks }) }}"></span>
+                        {% else %}
+                            <span class="col-xs-2"></span>
+                        {% endif %}
+                        <span class="best-add glyphicon glyphicon-heart col-xs-2" id="{{ path('bestAdd', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name }) }}"></span>
+                        <span class="hide-pic glyphicon glyphicon-ban-circle col-xs-2" id="{{ path('hide', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name }) }}"></span>
+                        <span class="rotate-left glyphicon glyphicon-arrow-left col-xs-2" title="{{ pic.year }}{{ pic.month }}{{ pic.day }}{{ pic.name }}" id="{{ path('rotate', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name, 'degrees': '90' }) }}"></span>
+                        <span class="rotate-right glyphicon glyphicon-arrow-right col-xs-2" title="{{ pic.year }}{{ pic.month }}{{ pic.day }}{{ pic.name }}" id="{{ path('rotate', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name, 'degrees': '270' }) }}"></span>
+                        </div>
+                        <div>
+                            <input type="text" class="description" value="{{ pic.description }}" id="{{ path('description', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name }) }}" />
+                        </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% else %}
+    Zdjęcia nie znaleziono.
+{% endfor %}
+</div>
+<p id="alert" class="bg-success"></p>
+<div id="bottom"></div>
+{% endblock %}
+

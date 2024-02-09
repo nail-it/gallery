@@ -1,0 +1,12 @@
+{% extends "KrzysPageBundle::layout-no-links.html.twig" %}
+
+{% block title "Krzyś " %}
+
+{% block content_header '' %}
+
+{% block content %}
+<h1>/* {{ main_slogan }} */</h1>
+
+{{ include ('KrzysPageBundle:Default:index-basic.html.twig', { 'hide': 'true' }) }}
+
+{% endblock %}

@@ -1,0 +1,96 @@
+pageAdminMonth:
+    path:  /secured/{year}/{month}
+    defaults: { _controller: KrzysPageBundle:Default:admin }
+
+page_admin:
+    path:  /secured
+    defaults: { _controller: KrzysPageBundle:Default:admin }
+
+page_log:
+    path:  /log/secured
+    defaults: { _controller: KrzysPageBundle:Default:log }
+
+page:
+    path: /
+    defaults: { _controller: KrzysPageBundle:Default:index }
+
+pageToo:
+    path:  2
+    defaults: { _controller: KrzysPageBundle:Default:index }
+    
+pageMonth:
+    path:  /{year}/{month}
+    defaults: { _controller: KrzysPageBundle:Default:index }        
+
+pageDay:
+    path:  /{year}/{month}/{day}
+    defaults: { _controller: KrzysPageBundle:Default:indexOneDay }
+
+evolution:
+    path:  /evolution
+    defaults: { _controller: KrzysPageBundle:Default:evolution }    
+
+pageOneDay:
+    path:  /oneday/{parameter}
+    defaults: { _controller: KrzysPageBundle:Default:oneDay }
+
+session:
+    path:  /session
+    defaults: { _controller: KrzysPageBundle:Default:session }
+
+evolutionNoLinks:
+    path:  /drw
+    defaults: { _controller: KrzysPageBundle:Default:evolutionNoLinks }
+
+evolutionAdd:
+    path:  /evolutionAdd/{year}/{month}/{day}/{file}/{tag}/{week}
+    defaults: { _controller: KrzysPageBundle:Default:evolutionAdd }
+
+best:
+    path:  /best
+    defaults: { _controller: KrzysPageBundle:Default:best }
+
+bestNoLinks:
+    path:  /spr
+    defaults: { _controller: KrzysPageBundle:Default:bestNoLinks }
+
+bestAdd:
+    path:  /bestAdd/{year}/{month}/{day}/{file}
+    defaults: { _controller: KrzysPageBundle:Default:bestAdd }
+
+video:
+    path:  /video
+    defaults: { _controller: KrzysPageBundle:Default:video }
+
+hide:
+    path:  /hide/{year}/{month}/{day}/{file}
+    defaults: { _controller: KrzysPageBundle:Default:hide }
+
+incoming:
+    path:  /incoming
+    defaults: { _controller: KrzysPageBundle:Default:incoming }
+
+incomingAmount:
+    path:  /incomingAmount
+    defaults: { _controller: KrzysPageBundle:Default:incomingAmount }
+
+
+rotate:
+    path:  /rotate/{year}/{month}/{day}/{file}/{degrees}
+    defaults: { _controller: KrzysPageBundle:Default:rotate }
+
+tag:
+    path:  /tag/{year}/{month}/{day}/{file}
+    defaults: { _controller: KrzysPageBundle:Default:tag }
+
+tagAll:
+    path:  /tagAll
+    defaults: { _controller: KrzysPageBundle:Default:tagAll }
+
+
+description:
+    path:  /description/{year}/{month}/{day}/{file}
+    defaults: { _controller: KrzysPageBundle:Default:description }
+
+logout:
+    path: /logout

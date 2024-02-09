@@ -1,0 +1,9 @@
+<div class="navigation">
+  {% if(not((selectedYear == nowYear) and (selectedMonth == nowMonth))) %}
+    <a class="next" href="{{ path('pageMonth', { 'year': nextYear, 'month': nextMonth }) }}"><<< Następny miesiąc</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  {% endif %}
+  {% if(not((selectedYear == birthYear) and (selectedMonth == birthMonth))) %}
+    <a class="prev" href="{{ path('pageMonth', { 'year': prevYear, 'month': prevMonth }) }}">Poprzedni miesiąc >>></a>
+  {% endif %}
+</div>

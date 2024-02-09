@@ -1,0 +1,13 @@
+<h1>Wideo</h1>
+
+{% for vid in files %}
+  <div class="item-box-video">
+    <span class="item">      
+	  <video width="350" controls>
+	    <source src="{{ asset('bundles/gallery/videos') }}/{{ vid.name }}" type="video/mp4">
+	    Your browser does not support HTML5 video.
+	  </video>	      
+    </span>
+  </div>
+{% endfor %}
+<div id="bottom"></div>

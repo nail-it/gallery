@@ -1,0 +1,26 @@
+{% extends "KrzysPageBundle::layout.html.twig" %}
+
+{% block title "Krzyś " %}
+
+{% block content_header '' %}
+
+{% block content %}
+
+<h1>Logi</h1>
+<!-- 
+<a href="{{ path('pageAdminMonth', { 'year': 2012, 'month': 04 }) }}">kwiecień</a> |
+<a href="{{ path('pageAdminMonth', { 'year': 2012, 'month': 03 }) }}">marzec</a> |
+<a href="{{ path('pageAdminMonth', { 'year': 2012, 'month': 02 }) }}">luty</a> |
+<a href="{{ path('pageAdminMonth', { 'year': 2012, 'month': 01 }) }}">styczeń</a> |
+<a href="{{ path('pageAdminMonth', { 'year': 2011, 'month': 12 }) }}">grudzień</a> | 
+<a href="{{ path('pageAdminMonth', { 'year': 2011, 'month': 11 }) }}">listopad</a> | 
+<a href="{{ path('pageAdminMonth', { 'year': 2011, 'month': 10 }) }}">październik</a> | 
+<a href="{{ path('page_log') }}">log</a>
+ -->
+{% for line in lines %}
+<p>
+{{ line | raw }}
+<hr />
+</p>
+{% endfor %}
+{% endblock %}

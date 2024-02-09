@@ -1,0 +1,411 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.2r1
+
+Reset
+*/
+
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
+
+html, body
+{
+    background-color: #DFDFDF !important;
+}
+
+body
+{
+    font-size:        14px;
+    font-family:      "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+    color:            #313131;
+}
+
+a
+{
+    color:           #08C;
+    text-decoration: none;
+}
+/*
+a:hover
+{
+    text-decoration: underline;
+}
+*/
+strong
+{
+    font-weight: bold;
+}
+
+em
+{
+    font-style: italic;
+}
+
+h1, h2, h3
+{
+    font-family:    Georgia, "Times New Roman", Times, serif;
+    color:          #404040;
+}
+
+h1
+{
+    font-size:      45px;
+    padding-bottom: 30px;
+}
+
+h2
+{
+    font-weight:   bold;
+    color:         #FFFFFF;
+    /* Font is duplicated of body (sans-serif) */
+    font-family:      "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+
+    margin-bottom:    10px;
+    background-color: #aacd4e;
+    padding:          2px 4px;
+    display:          inline-block;
+    text-transform:   uppercase;
+
+}
+
+p
+{
+    line-height:    20px;
+    padding-bottom: 20px;
+}
+
+ul#demo-list a
+{
+    background: url(../images/blue-arrow.png) no-repeat right 6px;
+    padding-right: 10px;
+}
+
+ul, ol
+{
+    padding-left: 20px;
+}
+
+li
+{
+    padding-bottom: 18px;
+}
+
+ol li
+{
+    list-style-type: decimal;
+}
+
+ul li
+{
+    list-style-type: none;
+}
+
+#symfony-header
+{
+	margin: 0px 20px;
+    position: relative;
+    padding: 0;
+}
+
+#symfony-wrapper
+{
+    width:  auto;
+    margin: 0 20px;
+}
+
+.symfony-content
+{
+    background-color:           white;
+    border:                     1px solid #DFDFDF;
+    padding:                    50px;
+    -moz-border-radius:         16px;
+    -webkit-border-radius:      16px;
+    border-radius:              16px;
+    margin-bottom:              20px;
+    word-wrap:                  break-word;
+}
+
+#symfony-search
+{
+    position: absolute;
+    top:   50px;
+    right: 30px;
+}
+
+#symfony-search input[type="search"]
+{
+    -webkit-appearance: textfield;
+}
+
+#symfony-search-field
+{
+    width: 190px;
+}
+
+#symfony-search label
+{
+    display: block;
+    float: left;
+    width: 20px;
+    height: 25px;
+    background: url(../images/search.png) no-repeat left 5px;
+}
+
+#symfony-search label span
+{
+    display: none;
+}
+
+input[type=text], input[type=password]
+{
+    border:      1px solid #DADADA;
+    background:  white url(../images/field-background.gif) repeat-x left top;
+    padding:     5px 6px;
+    color:       #565656;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+    font-size:   12px;
+}
+
+.symfony-button-grey,
+.symfony-button-green
+{
+    font-size: 0.85em;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: inline-block;
+    outline: none;
+
+    text-align:     center;
+    text-transform: uppercase;
+
+    padding: 3px 10px;
+
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius:    4px;
+    border-radius:         4px;
+}
+
+.symfony-button-grey
+{
+    color:       #868686;
+    font-weight: normal;
+
+    padding:    5px 10px;
+    border:     solid 1px #d7d7d7;
+    background: #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d7d7d7));
+    background: -moz-linear-gradient(top,  #ffffff,  #d7d7d7);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#d7d7d7');
+}
+
+.symfony-button-green
+{
+    padding: 5px 12px;
+
+    color: white;
+
+    border:     solid 1px #a7da39;
+    background: #a7da39;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a7da39), to(#6a9211));
+    background: -moz-linear-gradient(top,  #a7da39,  #6a9211);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a7da39', endColorstr='#6a9211');
+}
+
+.symfony-blocks-welcome
+{
+    overflow: hidden;
+}
+
+.symfony-blocks-welcome > div
+{
+    background-color: whitesmoke;
+    float:            left;
+    width:            240px;
+    margin-right:     14px;
+    text-align:       center;
+    padding:          26px 20px;
+}
+
+.symfony-blocks-welcome > div.block-demo
+{
+    margin-right: 0;
+}
+
+.symfony-blocks-welcome .illustration
+{
+    padding-bottom: 20px;
+}
+
+.symfony-blocks-help
+{
+    overflow: hidden;
+}
+
+.symfony-blocks-help
+{
+    margin-top: 30px;
+    padding:    18px;
+    border:     1px solid #E6E6E6;
+}
+
+.symfony-blocks-help > div
+{
+    width:        254px;
+    float:        left;
+}
+
+.flash-message
+{
+    padding: 10px;
+    margin: 5px;
+    margin-top: 15px;
+    background-color: #ffe;
+}
+
+.error
+{
+    color: red;
+}
+
+#login label, #contact_form label
+{
+    display: block;
+    float: left;
+    width: 90px;
+}
+
+ul#menu
+{
+    float: right;
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+#menu li
+{
+    padding-left: 0;
+    margin-right: 10px;
+    display: inline;
+}
+
+@media (max-width: 1024px) {
+    body {
+        font-size: 120% !important;
+    }
+    body #symfony-header > a > img {
+        width: 120%;
+    }
+
+    body #symfony-header .menu {
+        font-size: 100% !important;
+    }
+    body #symfony-header .menu > span {
+        display: none;
+    }
+    body #symfony-header .menu > a {
+        display: block !important;
+        margin: 10px 0;  
+    }
+    body #symfony-header h3 {    
+        width: 244px;
+    }    
+    
+    body .symfony-content h1 {
+        font-size: 150% !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    body #symfony-header h3 {    
+        /* float: left; */
+        width: 345px;
+    }
+}
+
+h6 { font-size: 12px; position: relative; top: -30px; }
+
+body #symfony-header h3 { color: #333; display: block; font: 400 2.5em/120% 'Qwigley', Helvetica, Sans-serif; margin: 0; text-align: right;  }
+body #symfony-header > a { display: block; padding: 20px 30px 0px 0px; }
+body #symfony-header #filter { margin: 10px 0; text-align: right; z-index: 100; }
+body #symfony-header #filter div { cursor: pointer; display:inline; margin: 0 5px 0 10px; }
+body #symfony-header #filter div input { margin-right: 5px; }
+body #symfony-header .menu { margin-right: 0px; position: relative; text-align: right; width: 100%; }
+body #symfony-header .menu span,
+body #symfony-header .menu a { margin-left: 10px; }
+
+.rotate-left, .rotate-right, .hide-pic { color: #0088CC; cursor: pointer; }
+div.date { clear: both; font-size: 20px; margin: 20px 0px; padding: 20px 0px; }
+div.date a { color: #000000 !important; }
+div.item-box { float: left; height: 210px; position: relative; text-align: center; width: 210px; }
+div.item-box-big { float: left; height: 410px; text-align: center; width: 410px; }
+div.item-box-video { float: left; height: 200px; text-align: center; width: 360px; }
+div.item { position: relative; }
+div.item object { position: relative; z-index: 1; }
+div.item span { background-color: #FFFFFF; bottom: 5px; filter: alpha(opacity = 70); left: 5px; opacity: 0.7; padding: 6px; position: absolute; text-align: left; width: 100%; z-index: 5; }
+div.item-box.horizontal div.item { position: relative; top: 30px; } 
+div.item-box.horizontal div.item span { left: 5px; width: 100%; }
+div.item-box.vertical div.item span { left: 39px; width: 64%; }
+div.item a img.medium { margin: 5px; }
+div.description-day { background-color: #EEEEEE; border: 1px dotted #AAAAAA; margin: 20px 0px; min-height: 90px; padding: 20px; }
+input.description-day { width: 800px; }
+.dau { background-color: #FF0000; }
+.son { background-color: #FF00FF; }
+.mom { background-color: #00FF00; }
+.dad { background-color: #0000FF; }
+
+span.avatar { border: 1px solid black; display: block; float: left; height: 50px; margin: 0px 10px 10px 0px; width: 50px; }
+span.avatar-gg { background-image: url("../images/gg.jpg"); }
+span.avatar-ag { background-image: url("../images/ag.jpeg"); }
+span.avatar-dau { background-image: url("../images/dau.jpg"); }
+span.avatar-son { background-image: url("../images/son.jpg"); }
+span.avatar-mom { background-image: url("../images/mom.jpg"); }
+span.avatar-dad { background-image: url("../images/dad.jpg"); }
+span.day-no { color: #AAAAAA; font-size: 12px; }
+div.day-description { margin-left: 60px; }
+div.description-day div.day-description ul { }
+div.description-day div.day-description ul li { list-style-type: disc !important; margin: 0px; padding-bottom: 0px !important; }
+
+div#bottom { clear: both; padding-top: 100px; }
+
+div#calendar-years a { cursor: pointer; }
+
+div.navigation { font-size: 17px; margin: 20px 0px; }
+div.navigation .prev { float: right; }
+div.navigation .next { float: left; }
+
+/* admin only */
+div.admin-header { clear: both; cursor: pointer; }
+div.admin-item { border: solid 1px black; height: 283px; float: left; margin: 10px; padding: 10px; width: 226px; }
+div.admin-item .admin-picture { display: block; height: 203px; position: relative; text-align: center; }
+div.admin-item .admin-picture img { position: absolute; top: 0; bottom: 0; right: 0; left: 0; margin: auto; }
+div.admin-item.selected2 { background-color: #FFDDDD; }
+div.admin-item.selected1 { background-color: #DDDDFF; }
+div.admin-item div.actions { clear: both; margin: 10px; }
+div.admin-item div.actions .hover { color: #0000FF; }
+div.admin-item div.actions .best-add.hover { color: #FF0000; }
+div.admin-item div.actions span { color: #000000; }
+div.admin-item input { width: 100%; }
+.incoming-process { cursor: pointer; }
+
+p#alert { display: none; padding: 20px; right: 50%; position: fixed; top: 0; }
+
+.gallery.custom-state-active { background: #eee; }
+.gallery .admin-picture h5 { margin: 0 0 0.4em; cursor: move; }
+.gallery .admin-picture a { float: right; }
+.gallery .admin-picture a.ui-icon-zoomin { float: left; }
+.gallery .admin-picture img { cursor: move; }
+
+.open-months { font-weight: normal; }
+.active { font-weight: bold; }
+.open-months.active { font-weight: bold !important; }
+
+.evolution-add, .best-add { cursor: pointer; }
+
+div.ajax-loader { background-image: url("../../nailitgallery/images/ajax-loader.gif"); }
+
+.date { cursor: pointer; }

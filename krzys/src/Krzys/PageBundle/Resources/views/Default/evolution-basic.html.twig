@@ -1,0 +1,21 @@
+{% macro image(pic) %}
+<img src="{{ asset('bundles/gallery/images/years') }}/{{ pic.name }}" class="medium" title="{{ pic.amountWeeks }} tydzień Krzysia, {{ pic.amountWeeks2 }} tydzień Zosi, {{pic.day}}.{{pic.month}}.{{pic.year}}"/>
+{% endmacro %}
+
+<h1>Moja ewolucja</h1>
+<h6>czyli jak się zmieniałem tydzień po tygodniu</h6>
+
+{% for pic in files %}
+  <div class="item-box selected{{ pic.tag }}">
+    <span class="item">
+	  {% if hide is defined %}
+	    {{ _self.image(pic) }}	    
+	  {% else %}
+	    <a href="{{ path('pageMonth', { 'year': pic.year, 'month': pic.month }) }}#{{ pic.amountDays }}" class="medium">
+	      {{ _self.image(pic) }}	    
+	    </a>	  
+      {% endif %}
+    </span>
+  </div>
+{% endfor %}
+<div id="bottom"></div>
