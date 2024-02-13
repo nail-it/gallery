@@ -12,6 +12,11 @@ use App\Nailit\GalleryBundle\Entity\Filesystem;
 
 class DefaultController extends AbstractController
 {
+
+	public function __construct(Filesystem $filesystem)
+	{
+		$this->filesystem = $filesystem;
+	}
 	
 	private static function getRealIpAddr() {
 		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {  //check ip from share internet
@@ -45,7 +50,7 @@ class DefaultController extends AbstractController
         $timeHandler->getNavigation();
 				
 		$files = array();
-		$files = $this->get('nailit_filesystem')->setNoLinks(true)->readImagesForOneDayFromFilesystem($files, $this->getParameter('dir.years'), $year, $month, $day);
+		$files = $this->filesystem->setNoLinks(true)->readImagesForOneDayFromFilesystem($files, $this->getParameter('dir.years'), $year, $month, $day);
 		return $this->render(
 		    'KrzysPageBundle:Default:index-no-links.html.twig',
             array(
@@ -95,6 +100,9 @@ class DefaultController extends AbstractController
                 'birthMonth'     => $timeHandler->getBirthMonth(),
             	'amountDays'     => $timeHandler->getAmountDaysFromMonthBegin(),               
             	'amountDays2'     => $timeHandler->getAmountDays2FromMonthBegin(),
+	            'sort_days'      => 'desc',
+	            'day_description' => 'a',
+	            'separate_days'   => 'b'
             )
         );
     }
@@ -113,7 +121,7 @@ class DefaultController extends AbstractController
 		$timeHandler->getNavigation();
 
 //		$this->log('main page one day '.$year . ' ' . $month . ' ' . $day);
-		$files = $this->get('nailit_filesystem')->readImagesFromFilesystem(
+		$files = $this->filesystem->readImagesFromFilesystem(
 			$this->getParameter('dir.years'),
 			$year,
 			$month,
@@ -149,7 +157,7 @@ class DefaultController extends AbstractController
 
 		$request = Request::createFromGlobals();
 		$isAjax = $request->isXmlHttpRequest();
-		$this->get('nailit_filesystem')->handleIncoming($dirIncoming, $dirImages, $dirYears);
+		$this->filesystem->handleIncoming($dirIncoming, $dirImages, $dirYears);
 
 		if($isAjax) {
 			$result = array();
@@ -167,7 +175,7 @@ class DefaultController extends AbstractController
 
 		$request = Request::createFromGlobals();
 		$isAjax = $request->isXmlHttpRequest();
-		$amount = $this->get('nailit_filesystem')->handleIncomingAmount($dirImages);
+		$amount = $this->filesystem->handleIncomingAmount($dirImages);
 
 		if ($isAjax) {
 			$result = array('amount'=>$amount);
@@ -179,14 +187,14 @@ class DefaultController extends AbstractController
     
     public function bestNoLinksAction() {
 //    	$this->log('best page');
-    	$files = $this->get('nailit_filesystem')->readBestFromFilesystem($this->getParameter('dir.images'));
+    	$files = $this->filesystem->readBestFromFilesystem($this->getParameter('dir.images'));
     	return $this->render('KrzysPageBundle:Default:best-no-links.html.twig', array('files'=>$files));
     }
     
     public function bestAction() {
 //    	$this->log('best page');
-    	$files = $this->get('nailit_filesystem')->readBestFromFilesystem($this->getParameter('dir.images'));
-    	return $this->render('KrzysPageBundle:Default:best.html.twig', array('files'=>$files));
+    	$files = $this->filesystem->readBestFromFilesystem($this->getParameter('dir.images'));
+    	return $this->render('@KrzysPage/Default/best.html.twig', array('files'=>$files));
     }
     
     public function bestAddAction($year, $month, $day, $file) {
@@ -204,8 +212,8 @@ class DefaultController extends AbstractController
 
     public function videoAction() {
 //    	$this->log('video page');
-    	$files = $this->get('nailit_filesystem')->readVideoFromFilesystem($this->getParameter('dir.videos'));
-    	return $this->render('KrzysPageBundle:Default:video.html.twig', array('files'=>$files));
+    	$files = $this->filesystem->readVideoFromFilesystem($this->getParameter('dir.videos'));
+    	return $this->render('@KrzysPage/Default/video.html.twig', array('files'=>$files));
     }
     
     
@@ -228,18 +236,18 @@ class DefaultController extends AbstractController
     
     public function evolutionNoLinksAction() {
 //    	$this->log('evolution no links page');
-    	$files = $this->get('nailit_filesystem')->readEvolutionFromFilesystem($this->getParameter('dir.images'));
+    	$files = $this->filesystem->readEvolutionFromFilesystem($this->getParameter('dir.images'));
     	return $this->render('KrzysPageBundle:Default:evolution-no-links.html.twig', array('files'=>$files));
     }
     
     public function evolutionAction() {
 //    	$this->log('evolution page');
-    	$files = $this->get('nailit_filesystem')->readEvolutionFromFilesystem($this->getParameter('dir.images'));
-    	return $this->render('KrzysPageBundle:Default:evolution.html.twig', array('files'=>$files));
+    	$files = $this->filesystem->readEvolutionFromFilesystem($this->getParameter('dir.images'));
+    	return $this->render('@KrzysPage/Default/evolution.html.twig', array('files'=>$files));
     }
     
     private function applyEvolutionToManager($files, $year, $month) {
-    	$evolutionFiles = $this->get('nailit_filesystem')->readEvolutionFromFilesystem($this->getParameter('dir.images'));
+    	$evolutionFiles = $this->filesystem->readEvolutionFromFilesystem($this->getParameter('dir.images'));
     	foreach($evolutionFiles as $ef) {    		
     		if($ef->getYear() == $year && $ef->getMonth() == $month) {
 	    		$medias = $files[$ef->getYear()][$ef->getMonth()][$ef->getDay()];
@@ -261,8 +269,8 @@ class DefaultController extends AbstractController
     	$year = (is_null($year)||$month=='secured')?date('Y'):$year;
     	$month = is_null($month)?date('n'):$month;
     	
-    	//$this->get('nailit_filesystem')->handleIncoming($this->>getParameter('dir.incoming'), $this->>getParameter('dir.images'), $this->>getParameter('dir.years'));
-    	$files = $this->get('nailit_filesystem')->readImagesFromFilesystem(
+    	//$this->filesystem->handleIncoming($this->>getParameter('dir.incoming'), $this->>getParameter('dir.images'), $this->>getParameter('dir.years'));
+    	$files = $this->filesystem->readImagesFromFilesystem(
 			$this->getParameter('dir.years'),
 			$year,
 			$month
@@ -277,7 +285,7 @@ class DefaultController extends AbstractController
     
     public function logAction()
     {
-		$lines = $this->get('nailit_filesystem')->readLog($this->getParameter('dir.log'));
+		$lines = $this->filesystem->readLog($this->getParameter('dir.log'));
     	return $this->render('KrzysPageBundle:Default:log.html.twig', array('lines'=>$lines));
     }    
     
@@ -307,7 +315,7 @@ class DefaultController extends AbstractController
 		$pathToCachedFile = 'http://localhost/krzys-phpstorm/web/bundles/gallery/images/cache/' . $screenWidth . '-' . $screenHeight . '-'. $file;
 		$localPathToCachedFile = $this->getParameter('dir.images') . '/cache/' . $screenWidth . '-' . $screenHeight . '-'. $file;
 
-		$response = new Response($this->get('nailit_filesystem')->handleImage($image, $isAjax, $screenWidth, $screenHeight));
+		$response = new Response($this->filesystem->handleImage($image, $isAjax, $screenWidth, $screenHeight));
        	$response->headers->set('Content-Type', 'text/html');
        	return $response;
     }
@@ -345,7 +353,7 @@ class DefaultController extends AbstractController
     	$dirYears = $this->getParameter('dir.years');
 		$path = $dirYears.'/'.$year.'/'.$month.'/'.$day.'/tag';
 
-		$this->get('nailit_filesystem')->tagImage($action, $select, $path, $file);
+		$this->filesystem->tagImage($action, $select, $path, $file);
 
     	$request = Request::createFromGlobals();
     	$isAjax = $request->isXmlHttpRequest();
@@ -363,7 +371,7 @@ class DefaultController extends AbstractController
 		$select = $request->query->get('select');
 		$limit = $request->query->get('limit');
 
-		$this->get('nailit_filesystem')->tagAll($dirYears, $select, $limit);
+		$this->filesystem->tagAll($dirYears, $select, $limit);
 
 		$request = Request::createFromGlobals();
 		$isAjax = $request->isXmlHttpRequest();
@@ -380,7 +388,7 @@ class DefaultController extends AbstractController
 		$dirYears = $this->getParameter('dir.years');
 		$limit = $request->query->get('limit');
 
-		$this->get('nailit_filesystem')->redoThumbs($dirYears, $limit);
+		$this->filesystem->redoThumbs($dirYears, $limit);
 
 		$request = Request::createFromGlobals();
 		$isAjax = $request->isXmlHttpRequest();

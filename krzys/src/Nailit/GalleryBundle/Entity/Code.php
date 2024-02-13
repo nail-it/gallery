@@ -9,7 +9,7 @@ class Code {
 	private $month;
 	private $year;
 	
-	public function __construct($key) {
+	public function __construct($key = '') {
 		$this->key = $key;
 	}
 			

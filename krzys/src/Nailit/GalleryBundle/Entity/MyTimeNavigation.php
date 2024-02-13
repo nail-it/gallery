@@ -12,7 +12,7 @@ class MyTimeNavigation extends MyTime {
 	private $birthYear;
 	private $birthMonth;
 
-	public function __construct($selectedYear, $selectedMonth) {
+	public function __construct($selectedYear = '', $selectedMonth = '') {
 		parent::__construct();
 		$this->selectedTime = mktime(0, 0, 0, $selectedMonth, 1, $selectedYear);
 	}

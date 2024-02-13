@@ -1,6 +1,6 @@
 <?php
 
-namespace Nailit\GalleryBundle\Tests\Controller;
+namespace App\Nailit\GalleryBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

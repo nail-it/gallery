@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class Video {
 	private $name;
 	
-	public function __construct($name) {
+	public function __construct($name = '') {
 		$this->name = $name;
 	}
 	

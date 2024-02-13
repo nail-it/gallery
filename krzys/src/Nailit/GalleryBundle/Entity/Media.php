@@ -12,7 +12,7 @@ class Media extends AbstractMedia {
     private $dayCode;
     private $horizontal;
 	
-	public function __construct($year, $month, $day, $name, $description, $descriptionDayDau, $descriptionDaySon, $descriptionDayMom, $descriptionDayDad, $tag, $type, $horizontal = null) {
+	public function __construct($year = '', $month = '', $day = '', $name = '', $description = '', $descriptionDayDau = '', $descriptionDaySon = '', $descriptionDayMom = '', $descriptionDayDad = '', $tag = '', $type = '', $horizontal = null) {
 		$this->description = $description;
 		$this->descriptionDayDau = $descriptionDayDau;
 		$this->descriptionDaySon = $descriptionDaySon;

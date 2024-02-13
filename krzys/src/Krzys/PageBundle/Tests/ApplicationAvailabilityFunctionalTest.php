@@ -1,5 +1,5 @@
 <?php
-namespace Krzys\SecurityBundle\Tests;
+namespace App\Krzys\PageBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -6,7 +6,7 @@ class DescriptionDay {
 	private $text;
 	private $who;
 	
-	public function __construct($text, $who) {
+	public function __construct($text = '', $who = '') {
 		$this->text = $text;
 		$this->who = $who;
 	}

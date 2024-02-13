@@ -40,7 +40,7 @@
 		  {% if(day[0].descriptionDayDad != '') %}
 		    <div class="dad description-day"><span class="avatar avatar-dad"></span><div class="day-description">{{ day[0].descriptionDayDad | raw }}</div></div>
 		  {% endif %}
-		  {% include 'NailitGalleryBundle:Default:index.html.twig' %}
+		  {% include '@NailitGallery/Default/index.html.twig' %}
 		{% endif %}
 	  {% else %}
         <div class="date hidden">

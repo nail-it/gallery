@@ -3,7 +3,7 @@
           <div class="item-box selected{{ pic.tag }} {{ pic.isHorizontal == true ? 'horizontal':'vertical' }}">
             <div class="item">
             <a class="regular-image" data-fancybox-group="button" href="{{ path('gallery', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name }) }}">
-              <img src="{{ asset('bundles/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/thumb/{{ pic.name }}" class="medium" title="{{ pic.name }}"/>
+              <img src="{{ asset('/bundles/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/thumb/{{ pic.name }}" class="medium" title="{{ pic.name }}"/>
             </a>
             {% if(pic.description != '') %}
               <span class="description">{{ pic.description }}</span>

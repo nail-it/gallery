@@ -2,14 +2,14 @@
 namespace App\Krzys\PageBundle\Util;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Nailit\GalleryBundle\Entity\AbstractMedia;
+use App\Nailit\GalleryBundle\Entity\AbstractMedia;
 
 class LinkMedia extends AbstractMedia {
     private $file;
 	private $sourceName;
 	private $tag;	
 	
-	public function __construct($file, $name) {
+	public function __construct($file = '', $name = '') {
 		//die($name);
 		$stack = explode('/',$name);
 		$this->file = array_pop($stack);

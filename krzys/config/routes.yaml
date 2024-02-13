@@ -12,8 +12,8 @@ KrzysPageBundle:
 
 login:
   path:   /login
-  controller: KrzysSecurityBundle:Default:login
+  defaults:  { _controller: KrzysSecurityBundle:Default:login }
 
 login_check:
   path:   /login_check
-  controller: KrzysPageBundle:Default:index
+  defaults:  { _controller: KrzysPageBundle:Default:index }

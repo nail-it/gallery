@@ -1,6 +1,6 @@
 <?php
 
-namespace Krzys\SecurityBundle\Tests\Controller;
+namespace App\Krzys\SecurityBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

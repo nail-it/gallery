@@ -1,6 +1,6 @@
 <?php
 
-namespace Krzys\PageBundle\Tests\Controller;
+namespace App\Krzys\PageBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
