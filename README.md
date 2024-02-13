@@ -12,3 +12,8 @@ How to start dev server?
 symfony serve
 ```
 
+Clear cache 
+-------------
+```
+php bin/console cache:clear 
+```

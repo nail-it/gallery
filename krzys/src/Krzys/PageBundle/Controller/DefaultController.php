@@ -2,6 +2,7 @@
 
 namespace App\Krzys\PageBundle\Controller;
 
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Nailit\GalleryBundle\Entity\Media;
@@ -12,10 +13,25 @@ use App\Nailit\GalleryBundle\Entity\Filesystem;
 
 class DefaultController extends AbstractController
 {
+	public $filesystem;
+	public $mainSlogan;
+	public $sortDays;
+	public $pageTitle;
+	public $mainPath;
 
-	public function __construct(Filesystem $filesystem)
+
+	public function __construct(
+		Filesystem $filesystem,
+		string $mainSlogan = '',
+		string $sortDays = 'desc',
+		string $pageTitle = '',
+		string $mainPath = ''
+	)
 	{
 		$this->filesystem = $filesystem;
+		$this->mainSlogan = $mainSlogan;
+		$this->pageTitle = $pageTitle;
+		$this->mainPath = $mainPath;
 	}
 	
 	private static function getRealIpAddr() {
@@ -61,7 +77,7 @@ class DefaultController extends AbstractController
         );
 	}
 	
-    public function indexAction($year = null, $month = null, Filesystem $filesystem)
+    public function indexAction($year = null, $month = null, Filesystem $filesystem = null)
     {    	     	
     	$dateStart		= $this->getParameter('date.start');
     	 
@@ -73,8 +89,8 @@ class DefaultController extends AbstractController
     	
     	$timeHandler = new MyTimeNavigation($year, $month);
     	$timeHandler->getNavigation();
-    	
-//    	$this->log('main page '.$year.' '.$month);
+
+    	$this->logAction('main page '.$year.' '.$month);
     	$files = $filesystem->readImagesFromFilesystem(
 			$this->getParameter('dir.years'),
 			$year,
@@ -100,9 +116,10 @@ class DefaultController extends AbstractController
                 'birthMonth'     => $timeHandler->getBirthMonth(),
             	'amountDays'     => $timeHandler->getAmountDaysFromMonthBegin(),               
             	'amountDays2'     => $timeHandler->getAmountDays2FromMonthBegin(),
-	            'sort_days'      => 'desc',
+	            'sort_days'      => $this->sortDays,
 	            'day_description' => 'a',
-	            'separate_days'   => 'b'
+	            'separate_days'   => 'b',
+	            'main_slogan' => $this->mainSlogan
             )
         );
     }
@@ -280,13 +297,21 @@ class DefaultController extends AbstractController
         
         $dateStart		= $this->getParameter('date.start');
     	
-    	return $this->render('KrzysPageBundle:Default:admin.html.twig', array('files'=>$files, 'selectedYear'=>$year, 'selectedMonth'=>$month, 'dateStart'=>$dateStart));
+    	return $this->render('@KrzysPage/Default/admin.html.twig',
+		    array(
+				'files'=>$files,
+				'selectedYear'=>$year,
+				'selectedMonth'=>$month,
+				'dateStart'=>$dateStart,
+			    'main_path'=>$this->mainPath
+		    )
+	    );
     }
     
     public function logAction()
     {
 		$lines = $this->filesystem->readLog($this->getParameter('dir.log'));
-    	return $this->render('KrzysPageBundle:Default:log.html.twig', array('lines'=>$lines));
+    	return $this->render('@KrzysPage/Default/log.html.twig', array('lines'=>$lines));
     }    
     
     public function hideAction($year, $month, $day, $file) {

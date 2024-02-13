@@ -1,4 +1,4 @@
-{% extends "KrzysPageBundle::layout.html.twig" %}
+{% extends "@KrzysPage/layout.html.twig" %}
 
 {% block title "Krzyś " %}
 
@@ -19,8 +19,8 @@
  -->
 {% for line in lines %}
 <p>
-{{ line | raw }}
-<hr />
+    {{ line | raw }}
+    <hr />
 </p>
 {% endfor %}
 {% endblock %}

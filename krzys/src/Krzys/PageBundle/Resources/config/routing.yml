@@ -4,11 +4,11 @@ pageAdminMonth:
 
 page_admin:
     path:  /secured
-    defaults: { _controller: KrzysPageBundle:Default:admin }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::adminAction }
 
 page_log:
     path:  /log/secured
-    defaults: { _controller: KrzysPageBundle:Default:log }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::logAction }
 
 page:
     path: /

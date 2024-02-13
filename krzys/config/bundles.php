@@ -10,7 +10,6 @@ return [
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
-    Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
     App\Krzys\PageBundle\KrzysPageBundle::class => ['all' => true],
     App\Krzys\SecurityBundle\KrzysSecurityBundle::class => ['all' => true],
     App\Nailit\GalleryBundle\NailitGalleryBundle::class => ['all' => true],
