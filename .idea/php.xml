@@ -126,9 +126,10 @@
       <path value="$PROJECT_DIR$/krzys/vendor/symfony/mime" />
       <path value="$PROJECT_DIR$/krzys/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/krzys/vendor/symfony/translation-contracts" />
+      <path value="" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>

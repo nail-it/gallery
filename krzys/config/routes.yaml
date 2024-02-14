@@ -16,4 +16,4 @@ login:
 
 login_check:
   path:   /login_check
-  defaults:  { _controller: KrzysPageBundle:Default:index }
+  defaults:  { _controller: App\Krzys\PageBundle\Controller\DefaultController::indexAction }

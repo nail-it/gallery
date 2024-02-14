@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Nailit\GalleryBundle\Entity\Media;
 use App\Nailit\GalleryBundle\Entity\MyTimeNavigation;
-use Symfony\Component\HttpFoundation\Request;
+//use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+
 
 use App\Nailit\GalleryBundle\Entity\Filesystem;
 
@@ -18,6 +20,7 @@ class DefaultController extends AbstractController
 	public $sortDays;
 	public $pageTitle;
 	public $mainPath;
+	public $requestStack;
 
 
 	public function __construct(
@@ -25,13 +28,15 @@ class DefaultController extends AbstractController
 		string $mainSlogan = '',
 		string $sortDays = 'desc',
 		string $pageTitle = '',
-		string $mainPath = ''
+		string $mainPath = '',
+		RequestStack $requestStack
 	)
 	{
 		$this->filesystem = $filesystem;
 		$this->mainSlogan = $mainSlogan;
 		$this->pageTitle = $pageTitle;
 		$this->mainPath = $mainPath;
+		$this->requestStack = $requestStack;
 	}
 	
 	private static function getRealIpAddr() {
@@ -173,8 +178,8 @@ class DefaultController extends AbstractController
 		$dirImages 		= $this->getParameter('dir.images');
 		$dirYears 		= $this->getParameter('dir.years');
 
-		$request = Request::createFromGlobals();
-		$isAjax = $request->isXmlHttpRequest();
+//		$request = Request::createFromGlobals();
+		$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		$this->filesystem->handleIncoming($dirIncoming, $dirImages, $dirYears);
 
 		if($isAjax) {
@@ -191,8 +196,8 @@ class DefaultController extends AbstractController
 		$dirImages = $this->getParameter('dir.images');
 		$dirYears = $this->getParameter('dir.years');
 
-		$request = Request::createFromGlobals();
-		$isAjax = $request->isXmlHttpRequest();
+//		$request = Request::createFromGlobals();
+		$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		$amount = $this->filesystem->handleIncomingAmount($dirImages);
 
 		if ($isAjax) {
@@ -218,10 +223,10 @@ class DefaultController extends AbstractController
     public function bestAddAction($year, $month, $day, $file) {
     	$dirImages = $this->getParameter('dir.images');
     	symlink($year.'/'.$month.'/'.$day.'/thumb/'.$file, $dirImages.'/best/'.$year.$month.$day.$file);
-    	$request = Request::createFromGlobals();
-    	if($request->isXmlHttpRequest()) {
+//    	$request = Request::createFromGlobals();
+    	if($this->requestStack->getCurrentRequest()->isXmlHttpRequest()) {
     		$result = array();
-    		$result['image'] = $this->renderView('KrzysPageBundle:Default:single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('@KrzysPage/Default/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     		$response->headers->set('Content-Type', 'application/json');
     		return $response;
@@ -242,10 +247,10 @@ class DefaultController extends AbstractController
     	    unlink($path);
     	}
     	symlink($year.'/'.$month.'/'.$day.'/thumb/'.$file, $path);
-    	$request = Request::createFromGlobals();
-    	if($request->isXmlHttpRequest()) {
+//    	$request = Request::createFromGlobals();
+    	if($this->requestStack->getCurrentRequest()->isXmlHttpRequest()) {
     		$result = array();
-    		$result['image'] = $this->renderView('KrzysPageBundle:Default:single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('@KrzysPage/Default/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     		$response->headers->set('Content-Type', 'application/json');
     		return $response;
@@ -319,8 +324,8 @@ class DefaultController extends AbstractController
     	$dirYears = $this->getParameter('dir.years');
     	$picture = $dirYears.'/'.$year.'/'.$month.'/'.$day.'/thumb/'.$file;
     	unlink($picture);
-    	$request = Request::createFromGlobals();
-    	$isAjax = $request->isXmlHttpRequest();
+//    	$request = Request::createFromGlobals();
+    	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
     	if($isAjax) {
     		$result = array();
     		$response = new Response(json_encode($result));
@@ -330,14 +335,14 @@ class DefaultController extends AbstractController
     }
 
     public function galleryAction($year, $month, $day, $file) {
-    	$request = Request::createFromGlobals();
+//    	$request = Request::createFromGlobals();
 
-    	$screenWidth = $request->query->get('width');
-    	$screenHeight = $request->query->get('height');
+    	$screenWidth = $this->requestStack->getCurrentRequest()->query->get('width');
+    	$screenHeight = $this->requestStack->getCurrentRequest()->query->get('height');
     	
     	$image = $newpath = $this->getParameter('dir.years').'/'.$year.'/'.$month.'/'.$day.'/'.$file;
-    	$request = Request::createFromGlobals();
-    	$isAjax = $request->isXmlHttpRequest();
+//    	$request = Request::createFromGlobals();
+    	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		$pathToCachedFile = 'http://localhost/krzys-phpstorm/web/bundles/gallery/images/cache/' . $screenWidth . '-' . $screenHeight . '-'. $file;
 		$localPathToCachedFile = $this->getParameter('dir.images') . '/cache/' . $screenWidth . '-' . $screenHeight . '-'. $file;
 
@@ -361,11 +366,11 @@ class DefaultController extends AbstractController
     	unlink($incoming);
     	imagejpeg($rotate, $newpath, 100);
     	
-    	$request = Request::createFromGlobals();
-    	$isAjax = $request->isXmlHttpRequest();
+//    	$request = Request::createFromGlobals();
+    	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
     	if($isAjax) {
     		$result = array();
-    		$result['image'] = $this->renderView('KrzysPageBundle:Default:single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('@KrzysPage/Default/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     	    $response->headers->set('Content-Type', 'application/json');
     	    return $response;    	
@@ -373,16 +378,16 @@ class DefaultController extends AbstractController
     }
     
     public function tagAction($year, $month, $day, $file) {
-    	$request = Request::createFromGlobals();
-    	$action = $request->query->get('action');
-    	$select = $request->query->get('select');
+//    	$request = Request::createFromGlobals();
+    	$action = $this->requestStack->getCurrentRequest()->query->get('action');
+    	$select = $this->requestStack->getCurrentRequest()->query->get('select');
     	$dirYears = $this->getParameter('dir.years');
 		$path = $dirYears.'/'.$year.'/'.$month.'/'.$day.'/tag';
 
 		$this->filesystem->tagImage($action, $select, $path, $file);
 
-    	$request = Request::createFromGlobals();
-    	$isAjax = $request->isXmlHttpRequest();
+//    	$request = Request::createFromGlobals();
+    	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
     	if($isAjax) {
     		$result = array();
     		$response = new Response(json_encode($result));
@@ -392,15 +397,15 @@ class DefaultController extends AbstractController
     }
 
 	public function tagAllAction() {
-		$request = Request::createFromGlobals();
+//		$request = Request::createFromGlobals();
 		$dirYears = $this->getParameter('dir.years');
-		$select = $request->query->get('select');
-		$limit = $request->query->get('limit');
+		$select = $this->requestStack->getCurrentRequest()->query->get('select');
+		$limit = $this->requestStack->getCurrentRequest()->query->get('limit');
 
 		$this->filesystem->tagAll($dirYears, $select, $limit);
 
-		$request = Request::createFromGlobals();
-		$isAjax = $request->isXmlHttpRequest();
+//		$request = Request::createFromGlobals();
+		$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		if($isAjax) {
 			$result = array();
 			$response = new Response(json_encode($result));
@@ -410,14 +415,14 @@ class DefaultController extends AbstractController
 	}
 
 	public function redoThumbsAction() {
-		$request = Request::createFromGlobals();
+//		$request = Request::createFromGlobals();
 		$dirYears = $this->getParameter('dir.years');
-		$limit = $request->query->get('limit');
+		$limit = $this->requestStack->getCurrentRequest()->query->get('limit');
 
 		$this->filesystem->redoThumbs($dirYears, $limit);
 
-		$request = Request::createFromGlobals();
-		$isAjax = $request->isXmlHttpRequest();
+//		$request = Request::createFromGlobals();
+		$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		if($isAjax) {
 			$result = array();
 			$response = new Response(json_encode($result));
@@ -428,8 +433,8 @@ class DefaultController extends AbstractController
 
 	public function descriptionAction($year, $month, $day, $file) {
     	$dirYears = $this->getParameter('dir.years');
-    	$request = Request::createFromGlobals();
-    	$description = $request->request->get('description');
+//    	$request = Request::createFromGlobals();
+    	$description = $this->requestStack->getCurrentRequest()->request->get('description');
 		if(!file_exists($dirYears.'/'.$year.'/'.$month.'/'.$day.'/desc')) {
 			mkdir($dirYears.'/'.$year.'/'.$month.'/'.$day.'/desc', 0777);
 		}
@@ -437,20 +442,20 @@ class DefaultController extends AbstractController
     	$handle = fopen($filename, "w");
     	$contents = fwrite($handle, $description);
     	fclose($handle);
-    	return new Response(json_encode(array()));;
+    	return new Response(json_encode(array()));
     }
     
     public function sessionAction() {
-    	$request = Request::createFromGlobals();
-    	$tag = $request->query->get('tag');    	
+//    	$request = Request::createFromGlobals();
+    	$tag = $this->requestStack->getCurrentRequest()->query->get('tag');
     	$session = $this->get('session');
     	$session->set('tag', $tag);    	
     	
-    	if($request->query->has('r')) {
-    		$params = $this->get('router')->match('/'.$request->query->get('r'));
+    	if($this->requestStack->getCurrentRequest()->query->has('r')) {
+    		$params = $this->get('router')->match('/'.$this->requestStack->getCurrentRequest()->query->get('r'));
     		return $this->redirect($this->generateUrl($params['_route']), 301);
     	} else	 
-    		return new Response(json_encode(array()));;
+    		return new Response(json_encode(array()));
     }    
     
 }

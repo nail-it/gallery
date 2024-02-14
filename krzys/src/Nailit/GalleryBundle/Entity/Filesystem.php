@@ -1,6 +1,9 @@
 <?php 
 namespace App\Nailit\GalleryBundle\Entity;
 
+use App\Krzys\PageBundle\Util\LinkMedia;
+use App\Krzys\PageBundle\Util\Video;
+
 class Filesystem {
 	
 	private $noLinks;
@@ -178,7 +181,7 @@ class Filesystem {
 			/* for each year */
 			while (false !== ($file = readdir($handleEvolution))) {
 				if ($file != "." && $file != "..") {
-					$files[$file] = new \Krzys\PageBundle\Util\LinkMedia($file, readlink($path.'/'.$file));
+					$files[$file] = new LinkMedia($file, readlink($path.'/'.$file));
 				}
 			}
 		}
@@ -195,7 +198,7 @@ class Filesystem {
 			/* for each year */
 			while (false !== ($file = readdir($handleBest))) {
 				if ($file != "." && $file != "..") {
-					$files[] = new \Krzys\PageBundle\Util\LinkMedia($file, readlink($path.'/'.$file));
+					$files[] = new LinkMedia($file, readlink($path.'/'.$file));
 				}
 			}
 		}
@@ -212,7 +215,7 @@ class Filesystem {
 			/* for each year */
 			while (false !== ($file = readdir($handleVideos))) {
 				if ($file != "." && $file != "..") {
-					$files[] = new \Krzys\PageBundle\Util\Video($file);
+					$files[] = new Video($file);
 				}
 			}
 		}

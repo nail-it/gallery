@@ -1,6 +1,6 @@
 pageAdminMonth:
     path:  /secured/{year}/{month}
-    defaults: { _controller: KrzysPageBundle:Default:admin }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::adminAction }
 
 page_admin:
     path:  /secured
@@ -16,81 +16,81 @@ page:
 
 pageToo:
     path:  2
-    defaults: { _controller: KrzysPageBundle:Default:index }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::indexAction }
     
 pageMonth:
     path:  /{year}/{month}
-    defaults: { _controller: KrzysPageBundle:Default:index }        
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::indexAction }
 
 pageDay:
     path:  /{year}/{month}/{day}
-    defaults: { _controller: KrzysPageBundle:Default:indexOneDay }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::indexOneDayAction }
 
 evolution:
     path:  /evolution
-    defaults: { _controller: KrzysPageBundle:Default:evolution }    
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::evolutionAction }
 
 pageOneDay:
     path:  /oneday/{parameter}
-    defaults: { _controller: KrzysPageBundle:Default:oneDay }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::oneDayAction }
 
 session:
     path:  /session
-    defaults: { _controller: KrzysPageBundle:Default:session }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::sessionAction }
 
 evolutionNoLinks:
     path:  /drw
-    defaults: { _controller: KrzysPageBundle:Default:evolutionNoLinks }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::evolutionNoLinksAction}
 
 evolutionAdd:
     path:  /evolutionAdd/{year}/{month}/{day}/{file}/{tag}/{week}
-    defaults: { _controller: KrzysPageBundle:Default:evolutionAdd }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::evolutionAddAction }
 
 best:
     path:  /best
-    defaults: { _controller: KrzysPageBundle:Default:best }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::bestAction }
 
 bestNoLinks:
     path:  /spr
-    defaults: { _controller: KrzysPageBundle:Default:bestNoLinks }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::bestNoLinksAction }
 
 bestAdd:
     path:  /bestAdd/{year}/{month}/{day}/{file}
-    defaults: { _controller: KrzysPageBundle:Default:bestAdd }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::bestAddAction }
 
 video:
     path:  /video
-    defaults: { _controller: KrzysPageBundle:Default:video }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::videoAction }
 
 hide:
     path:  /hide/{year}/{month}/{day}/{file}
-    defaults: { _controller: KrzysPageBundle:Default:hide }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::hideAction }
 
 incoming:
     path:  /incoming
-    defaults: { _controller: KrzysPageBundle:Default:incoming }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::incomingAction }
 
 incomingAmount:
     path:  /incomingAmount
-    defaults: { _controller: KrzysPageBundle:Default:incomingAmount }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::incomingAmountAction }
 
 
 rotate:
     path:  /rotate/{year}/{month}/{day}/{file}/{degrees}
-    defaults: { _controller: KrzysPageBundle:Default:rotate }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::rotateAction }
 
 tag:
     path:  /tag/{year}/{month}/{day}/{file}
-    defaults: { _controller: KrzysPageBundle:Default:tag }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::tagAction }
 
 tagAll:
     path:  /tagAll
-    defaults: { _controller: KrzysPageBundle:Default:tagAll }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::tagAllAction }
 
 
 description:
     path:  /description/{year}/{month}/{day}/{file}
-    defaults: { _controller: KrzysPageBundle:Default:description }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::descriptionAction }
 
 logout:
     path: /logout

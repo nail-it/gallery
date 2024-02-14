@@ -10,8 +10,10 @@ abstract class AbstractMedia {
 	protected $amountWeeks;
 	protected $amountDays2;
 	protected $amountWeeks2;
-	
+
+	protected $yearForAmountDays;
 	protected $yearForAmountDays2;
+	public $monthForAmountDays;
 	protected $monthForAmountDays2;
 	
 	public function __construct($year, $month, $day, $name) {

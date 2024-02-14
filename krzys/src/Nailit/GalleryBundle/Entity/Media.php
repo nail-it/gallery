@@ -3,6 +3,7 @@ namespace App\Nailit\GalleryBundle\Entity;
 
 class Media extends AbstractMedia {
 	private $description;
+	private $descriptionDayDau;
 	private $descriptionDaySon;
 	private $descriptionDayMom;
 	private $descriptionDayDad;
@@ -41,9 +42,9 @@ class Media extends AbstractMedia {
 	    parent::__construct($year, $month, $day, $name);
 	}
 
-	public function __set(string $name, mixed $value): void {
-		
-	}
+//	public function __set(string $name, mixed $value): void {
+//
+//	}
 
 	public function getDescription() {
 		return stripcslashes($this->description);

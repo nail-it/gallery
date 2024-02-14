@@ -3,7 +3,7 @@
           <div class="item-box selected{{ pic.tag }} {{ pic.isHorizontal == true ? 'horizontal':'vertical' }}">
             <div class="item">
             <a class="regular-image" data-fancybox-group="button" href="{{ path('gallery', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name }) }}">
-              <img src="{{ asset('/bundles/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/thumb/{{ pic.name }}" class="medium" title="{{ pic.name }}"/>
+              <img src="{{ asset('/web/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/thumb/{{ pic.name }}" class="medium" title="{{ pic.name }}"/>
             </a>
             {% if(pic.description != '') %}
               <span class="description">{{ pic.description }}</span>
@@ -14,7 +14,7 @@
         {% if(pic.type == 'big-image') %}
           <div class="item-box-big">
             <div class="item">        
-            <a href="{{ asset('bundles/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/{{ pic.name }}"><img src="{{ asset('bundles/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/thumb/{{ pic.name }}" class="medium" title="{{ pic.name }}"/></a>
+            <a href="{{ asset('web/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/{{ pic.name }}"><img src="{{ asset('web/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/thumb/{{ pic.name }}" class="medium" title="{{ pic.name }}"/></a>
             {% if(pic.description != '') %}
               <span class="description">{{ pic.description }}</span>
             {% endif %}
@@ -26,12 +26,12 @@
             <div class="item">        
               <object width="200" height="160"> 
               <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf"></param>
-              <param name="flashvars" value="src={{ asset('http://gallery.gwozdz.info/bundles/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}"></param>
+              <param name="flashvars" value="src={{ asset('http://gallery.gwozdz.info/web/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}"></param>
               <param name="allowFullScreen" value="true"></param>
               <param name="allowscriptaccess" value="always"></param>
               <param name="wmode" value="opaque"></param>
               <embed src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" 
-                allowfullscreen="true" width="200" height="160" flashvars="src={{ asset('http://gallery.gwozdz.info/bundles/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}">
+                allowfullscreen="true" width="200" height="160" flashvars="src={{ asset('http://gallery.gwozdz.info/web/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}">
               </embed>
               </object>
               {% if(pic.description != '') %}
@@ -44,7 +44,7 @@
           <div class="item-box">
             <div class="item">
 			  <video width="320" controls preload="none">
-			    <source src="{{ asset('bundles/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}" type="video/mp4">
+			    <source src="{{ asset('web/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}" type="video/mp4">
 			    Your browser does not support HTML5 video.
 			  </video>			  
             </div>

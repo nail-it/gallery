@@ -5,12 +5,19 @@ namespace App\Krzys\SecurityBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\HttpFoundation\RequestStack;
+//use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 class DefaultController extends AbstractController
 {
+
+	public function __construct(RequestStack $requestStack)
+	{
+		$this->requestStack = $requestStack;
+	}
+
     /**
      * @Route("/hello/{name}")
      * @Template()
@@ -23,9 +30,9 @@ class DefaultController extends AbstractController
 	/**
 	 * @Route("/login", name="login_route")
 	 */
-    public function loginAction(Request $request)
+    public function loginAction(AuthenticationUtils $authenticationUtils)
     {
-		$authenticationUtils = $this->get('security.authentication_utils');
+//		$authenticationUtils = $this->security('security.authentication_utils');
 
 		// get the login error if there is one
 		$error = $authenticationUtils->getLastAuthenticationError();
@@ -34,7 +41,7 @@ class DefaultController extends AbstractController
 		$lastUsername = $authenticationUtils->getLastUsername();
 
 		return $this->render(
-			'KrzysSecurityBundle:Default:login.html.twig',
+			'@KrzysSecurity/Default/login.html.twig',
 			array(
 				// last username entered by the user
 				'last_username' => $lastUsername,
