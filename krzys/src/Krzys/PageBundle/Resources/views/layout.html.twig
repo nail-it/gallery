@@ -18,7 +18,10 @@
     <script src="{{ asset('bundles/nailitgallery/js/jquery.fancybox-thumbs.js') }}" /></script>
     <script src="{{ asset('bundles/krzyspage/js/functions1.js') }}" /></script>
     <script src="{{ asset('bundles/nailitgallery/js/bootstrap.min.js') }}" /></script>
-    <title>{# page_title #}</title>
+    <title>
+        {% block page_title %}
+        {% endblock %}
+    </title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
 </head>
 <body>
@@ -53,7 +56,6 @@
     {% endfor %}
 
     {% block content_header %}
-
         <div style="clear: both"></div>
     {% endblock %}
 

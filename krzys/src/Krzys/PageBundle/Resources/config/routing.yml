@@ -12,7 +12,7 @@ page_log:
 
 page:
     path: /
-    defaults: { _controller: KrzysPageBundle:Default:index }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::indexAction }
 
 pageToo:
     path:  2

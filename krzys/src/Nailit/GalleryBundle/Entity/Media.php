@@ -12,7 +12,20 @@ class Media extends AbstractMedia {
     private $dayCode;
     private $horizontal;
 	
-	public function __construct($year = '', $month = '', $day = '', $name = '', $description = '', $descriptionDayDau = '', $descriptionDaySon = '', $descriptionDayMom = '', $descriptionDayDad = '', $tag = '', $type = '', $horizontal = null) {
+	public function __construct(
+		$year = '',
+		$month = '',
+		$day = '',
+		$name = '',
+		$description = '',
+		$descriptionDayDau = '',
+		$descriptionDaySon = '',
+		$descriptionDayMom = '',
+		$descriptionDayDad = '',
+		$tag = '',
+		$type = '',
+		$horizontal = null
+	) {
 		$this->description = $description;
 		$this->descriptionDayDau = $descriptionDayDau;
 		$this->descriptionDaySon = $descriptionDaySon;
@@ -27,7 +40,11 @@ class Media extends AbstractMedia {
 	    
 	    parent::__construct($year, $month, $day, $name);
 	}
-	
+
+	public function __set(string $name, mixed $value): void {
+		
+	}
+
 	public function getDescription() {
 		return stripcslashes($this->description);
 	}	

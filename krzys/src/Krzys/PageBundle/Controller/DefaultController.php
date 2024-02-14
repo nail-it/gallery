@@ -119,7 +119,8 @@ class DefaultController extends AbstractController
 	            'sort_days'      => $this->sortDays,
 	            'day_description' => 'a',
 	            'separate_days'   => 'b',
-	            'main_slogan' => $this->mainSlogan
+	            'main_slogan' => $this->mainSlogan,
+	            'page_title' => $this->pageTitle
             )
         );
     }
