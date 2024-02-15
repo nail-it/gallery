@@ -1,8 +1,7 @@
 security:
-    encoders:
-        Symfony\Component\Security\Core\User\User: 'bcrypt'
-        App\Security\User:
-            algorithm: bcrypt
+    enable_authenticator_manager: true
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
     providers:
         in_memory:
@@ -19,10 +18,14 @@ security:
             form_login:
                 login_path: /login
                 check_path: /login_check
-                csrf_token_generator: security.csrf.token_manager
-            anonymous: ~
+                enable_csrf: true
             logout:
                 path: app_logout
+
+            # configure the maximum login attempts
+            login_throttling:
+                max_attempts: 3          # per minute ...
+                # interval: '15 minutes' # ... or in a custom period
 
     access_control:
       - { path: '/secured', roles: ROLE_ADMIN }

@@ -127,6 +127,8 @@
       <path value="$PROJECT_DIR$/krzys/vendor/symfony/string" />
       <path value="$PROJECT_DIR$/krzys/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/krzys/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/krzys/vendor/symfony/rate-limiter" />
+      <path value="$PROJECT_DIR$/krzys/vendor/symfony/lock" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

@@ -6,7 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/krzys/src" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/krzys/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/doctrine/inflector" />
@@ -119,8 +118,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/requirements-checker" />
       <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/phpstan/phpdoc-parser" />
       <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/symfony/lock" />
       <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/symfony/password-hasher" />
       <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/symfony/rate-limiter" />
       <excludeFolder url="file://$MODULE_DIR$/krzys/vendor/symfony/string" />
     </content>
     <orderEntry type="inheritedJdk" />

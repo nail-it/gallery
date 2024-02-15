@@ -61,4 +61,22 @@ class GalleryMainTest extends WebTestCase
 		$this->assertSelectorTextContains('h1', 'Logowanie');
 
 	}
+
+    public function testSendingEmptyLoginForm(): void
+    {
+        $client = static::createClient();
+        $response = $client->request('GET', '/login');
+
+        $this->assertSelectorTextContains('h1', 'Logowanie');
+
+        $crawler = new Crawler($response->html());
+        $this->assertEquals(1, $crawler->filter('form')->count());
+
+        $form = $response->filter('form')->form();
+        $client->submit($form);
+
+        $this->assertResponseRedirects();
+        $client->followRedirect();
+        $this->assertSelectorTextContains('h1', 'Logowanie');
+    }
 }
