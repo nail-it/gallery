@@ -1,51 +1,28 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-
-    role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
-        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+        Symfony\Component\Security\Core\User\User: 'bcrypt'
+        App\Security\User:
+            algorithm: bcrypt
 
     providers:
-        users_in_memory:
+        in_memory:
             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: superlipnehaslo, roles: [ 'ROLE_ADMIN' ] }
+                    admin: { password: '$2a$12$BeAFg3/C0WZucDQ6B3ExGuGC/DBjiKFqAFFaZGcxcHYBIbI5GJAmy', roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
         dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: lazy
-            provider: users_in_memory
+            provider: in_memory
             form_login:
-              login_path: /login
-              check_path: /login_check
-            logout:
-              path: /logout
-              target: /%nailit_main_path%
-
-        login:
-            pattern:  ^/login$
-            security: false
-
-        default:
+                login_path: /login
+                check_path: /login_check
+                csrf_token_generator: security.csrf.token_manager
             anonymous: ~
+            logout:
+                path: app_logout
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
     access_control:
-#        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/%nailit_main_path%/secured, roles: ROLE_ADMIN }
-#        - { path: ^/log/secured, roles: ROLE_ADMIN }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+      - { path: '/secured', roles: ROLE_ADMIN }

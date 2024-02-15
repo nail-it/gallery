@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RequestStack;
 //use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Psr\Log\LoggerInterface;
 
 
 class DefaultController extends AbstractController
@@ -53,8 +54,10 @@ class DefaultController extends AbstractController
 	/**
 	 * @Route("/login_check", name="login_check")
 	 */
-	public function loginCheckAction()
+	public function loginCheckAction(LoggerInterface $logger)
 	{
+//			    $logger->info('this should not happen!!!!!');
+
 		// this controller will not be executed,
 		// as the route is handled by the Security system
 	}
