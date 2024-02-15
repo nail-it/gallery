@@ -9,11 +9,3 @@ NailitGalleryBundle:
 KrzysPageBundle:
   resource: "@KrzysPageBundle/Resources/config/routing.yml"
   prefix:   /
-
-login:
-  path:   /login
-  defaults:  { _controller: KrzysSecurityBundle:Default:login }
-
-login_check:
-  path:   /login_check
-  defaults:  { _controller: App\Krzys\PageBundle\Controller\DefaultController::indexAction }

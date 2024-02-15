@@ -25,10 +25,10 @@ class DefaultController extends AbstractController
 
 	public function __construct(
 		Filesystem $filesystem,
-		string $mainSlogan = '',
-		string $sortDays = 'desc',
-		string $pageTitle = '',
-		string $mainPath = '',
+		string $mainSlogan,
+		string $sortDays,
+		string $pageTitle,
+		string $mainPath,
 		RequestStack $requestStack
 	)
 	{

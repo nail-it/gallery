@@ -11,7 +11,6 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     App\Krzys\PageBundle\KrzysPageBundle::class => ['all' => true],
-    App\Krzys\SecurityBundle\KrzysSecurityBundle::class => ['all' => true],
     App\Nailit\GalleryBundle\NailitGalleryBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
 ];
