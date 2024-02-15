@@ -1,7 +1,3 @@
-NailitGalleryBundle_homepage:
-    path:  /hello/{name}
-    defaults: { _controller: NailitGalleryBundle:Default:index }
-
 gallery:
     path:  /gallery/{year}/{month}/{day}/{file}
-    defaults: { _controller: KrzysPageBundle:Default:gallery }
+    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::galleryAction }

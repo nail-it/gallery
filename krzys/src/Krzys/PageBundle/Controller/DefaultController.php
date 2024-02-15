@@ -343,8 +343,8 @@ class DefaultController extends AbstractController
     	$image = $newpath = $this->getParameter('dir.years').'/'.$year.'/'.$month.'/'.$day.'/'.$file;
 //    	$request = Request::createFromGlobals();
     	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
-		$pathToCachedFile = 'http://localhost/krzys-phpstorm/web/bundles/gallery/images/cache/' . $screenWidth . '-' . $screenHeight . '-'. $file;
-		$localPathToCachedFile = $this->getParameter('dir.images') . '/cache/' . $screenWidth . '-' . $screenHeight . '-'. $file;
+//		$pathToCachedFile = 'http://localhost/krzys-phpstorm/web/bundles/gallery/images/cache/' . $screenWidth . '-' . $screenHeight . '-'. $file;
+//		$localPathToCachedFile = $this->getParameter('dir.images') . '/cache/' . $screenWidth . '-' . $screenHeight . '-'. $file;
 
 		$response = new Response($this->filesystem->handleImage($image, $isAjax, $screenWidth, $screenHeight));
        	$response->headers->set('Content-Type', 'text/html');
