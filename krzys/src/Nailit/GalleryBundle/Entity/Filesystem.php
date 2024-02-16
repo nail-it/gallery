@@ -1,8 +1,8 @@
 <?php 
 namespace App\Nailit\GalleryBundle\Entity;
 
-use App\Krzys\PageBundle\Util\LinkMedia;
-use App\Krzys\PageBundle\Util\Video;
+use App\Nailit\GalleryBundle\Util\LinkMedia;
+use App\Nailit\GalleryBundle\Util\Video;
 
 class Filesystem {
 	

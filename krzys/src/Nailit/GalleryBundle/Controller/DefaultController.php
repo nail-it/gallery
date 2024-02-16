@@ -177,8 +177,7 @@ class DefaultController extends AbstractController
 		$dirImages 		= $this->getParameter('dir.images');
 		$dirYears 		= $this->getParameter('dir.years');
 
-//		$request = Request::createFromGlobals();
-		$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
+        $isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		$this->filesystem->handleIncoming($dirIncoming, $dirImages, $dirYears);
 
 		if($isAjax) {
@@ -195,7 +194,6 @@ class DefaultController extends AbstractController
 		$dirImages = $this->getParameter('dir.images');
 		$dirYears = $this->getParameter('dir.years');
 
-//		$request = Request::createFromGlobals();
 		$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		$amount = $this->filesystem->handleIncomingAmount($dirImages);
 
@@ -222,7 +220,6 @@ class DefaultController extends AbstractController
     public function bestAddAction($year, $month, $day, $file) {
     	$dirImages = $this->getParameter('dir.images');
     	symlink($year.'/'.$month.'/'.$day.'/thumb/'.$file, $dirImages.'/best/'.$year.$month.$day.$file);
-//    	$request = Request::createFromGlobals();
     	if($this->requestStack->getCurrentRequest()->isXmlHttpRequest()) {
     		$result = array();
     		$result['image'] = $this->renderView('@NailitGallery/Default/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
@@ -233,7 +230,6 @@ class DefaultController extends AbstractController
     }
 
     public function videoAction() {
-//    	$this->log('video page');
     	$files = $this->filesystem->readVideoFromFilesystem($this->getParameter('dir.videos'));
     	return $this->render('@NailitGallery/Default/video.html.twig', array('files'=>$files));
     }
@@ -246,7 +242,6 @@ class DefaultController extends AbstractController
     	    unlink($path);
     	}
     	symlink($year.'/'.$month.'/'.$day.'/thumb/'.$file, $path);
-//    	$request = Request::createFromGlobals();
     	if($this->requestStack->getCurrentRequest()->isXmlHttpRequest()) {
     		$result = array();
     		$result['image'] = $this->renderView('@NailitGallery/Default/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
@@ -323,7 +318,6 @@ class DefaultController extends AbstractController
     	$dirYears = $this->getParameter('dir.years');
     	$picture = $dirYears.'/'.$year.'/'.$month.'/'.$day.'/thumb/'.$file;
     	unlink($picture);
-//    	$request = Request::createFromGlobals();
     	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
     	if($isAjax) {
     		$result = array();
@@ -334,8 +328,6 @@ class DefaultController extends AbstractController
     }
 
     public function galleryAction($year, $month, $day, $file) {
-//    	$request = Request::createFromGlobals();
-
     	$screenWidth = $this->requestStack->getCurrentRequest()->query->get('width');
     	$screenHeight = $this->requestStack->getCurrentRequest()->query->get('height');
     	
@@ -377,7 +369,6 @@ class DefaultController extends AbstractController
     }
     
     public function tagAction($year, $month, $day, $file) {
-//    	$request = Request::createFromGlobals();
     	$action = $this->requestStack->getCurrentRequest()->query->get('action');
     	$select = $this->requestStack->getCurrentRequest()->query->get('select');
     	$dirYears = $this->getParameter('dir.years');
@@ -385,7 +376,6 @@ class DefaultController extends AbstractController
 
 		$this->filesystem->tagImage($action, $select, $path, $file);
 
-//    	$request = Request::createFromGlobals();
     	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
     	if($isAjax) {
     		$result = array();
@@ -396,14 +386,12 @@ class DefaultController extends AbstractController
     }
 
 	public function tagAllAction() {
-//		$request = Request::createFromGlobals();
 		$dirYears = $this->getParameter('dir.years');
 		$select = $this->requestStack->getCurrentRequest()->query->get('select');
 		$limit = $this->requestStack->getCurrentRequest()->query->get('limit');
 
 		$this->filesystem->tagAll($dirYears, $select, $limit);
 
-//		$request = Request::createFromGlobals();
 		$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		if($isAjax) {
 			$result = array();
@@ -414,13 +402,11 @@ class DefaultController extends AbstractController
 	}
 
 	public function redoThumbsAction() {
-//		$request = Request::createFromGlobals();
 		$dirYears = $this->getParameter('dir.years');
 		$limit = $this->requestStack->getCurrentRequest()->query->get('limit');
 
 		$this->filesystem->redoThumbs($dirYears, $limit);
 
-//		$request = Request::createFromGlobals();
 		$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
 		if($isAjax) {
 			$result = array();
@@ -432,7 +418,6 @@ class DefaultController extends AbstractController
 
 	public function descriptionAction($year, $month, $day, $file) {
     	$dirYears = $this->getParameter('dir.years');
-//    	$request = Request::createFromGlobals();
     	$description = $this->requestStack->getCurrentRequest()->request->get('description');
 		if(!file_exists($dirYears.'/'.$year.'/'.$month.'/'.$day.'/desc')) {
 			mkdir($dirYears.'/'.$year.'/'.$month.'/'.$day.'/desc', 0777);
@@ -445,7 +430,6 @@ class DefaultController extends AbstractController
     }
     
     public function sessionAction() {
-//    	$request = Request::createFromGlobals();
     	$tag = $this->requestStack->getCurrentRequest()->query->get('tag');
     	$session = $this->get('session');
     	$session->set('tag', $tag);    	
