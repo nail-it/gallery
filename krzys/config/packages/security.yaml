@@ -20,7 +20,7 @@ security:
                 check_path: /login_check
                 enable_csrf: true
             logout:
-                path: app_logout
+                path: logout
 
             # configure the maximum login attempts
             login_throttling:
