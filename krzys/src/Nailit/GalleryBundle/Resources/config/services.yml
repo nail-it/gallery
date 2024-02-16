@@ -1,7 +1,24 @@
 parameters:
-#    nailit_gallery.example.class: Nailit\GalleryBundle\Example
+    #    dir.home: /home/krzysztof/public_html/homepage/Symfony
+    dir.home: /Users/nailit/Sites/krzys4/krzys
+    #    dir.home: /home/tgwozdz/private/workspace/k
+    #    dir.home: /home/gwozdz/workspace/krzys-phpstorm
+
+    dir.images: '%dir.home%/public/web/gallery/images'
+    dir.videos: '%dir.home%/public/web/gallery/videos'
+    dir.years: '%dir.home%/public/web/gallery/images/years'
+    dir.incoming: '%dir.home%/public/web/gallery/images/incoming/'
+    dir.log: '%dir.home%/app/logs/'
+
+    code.masterkey: krzysiu
+    date.start:
+        year: 2011 #2015
+        month: 10 #12
+        day: 05 #10
+
+#    krzys_page.example.class: Krzys\PageBundle\Example
 
 services:
-#    nailit_gallery.example:
-#        class: %nailit_gallery.example.class%
+#    krzys_page.example:
+#        class: %krzys_page.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,4 +1,4 @@
-{% extends "@KrzysPage/layout.html.twig" %}
+{% extends "@NailitGallery/layout.html.twig" %}
 
 {% block title "Krzyś " %}
 
@@ -102,7 +102,7 @@
                     {% if is_granted('ROLE_ADMIN') and pic.name != '' %}
                         <div class="admin-item selected{{ pic.tag }} container-fluid">
                         <span class="admin-picture ui-widget-content ui-corner-tr" id="{{ path('tag', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name }) }}" title="{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/{{ pic.name }}">
-                        {% include '@KrzysPage/Default/single-image.html.twig' %}
+                        {% include '@NailitGallery/Default/single-image.html.twig' %}
                         </span>
                         <div class="actions row">
                         {% if(pic.tag != '') %}

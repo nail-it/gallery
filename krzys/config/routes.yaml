@@ -6,6 +6,3 @@ NailitGalleryBundle:
   resource: "@NailitGalleryBundle/Resources/config/routing.yml"
   prefix:   /
 
-KrzysPageBundle:
-  resource: "@KrzysPageBundle/Resources/config/routing.yml"
-  prefix:   /

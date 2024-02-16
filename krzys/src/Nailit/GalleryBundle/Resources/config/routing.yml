@@ -1,3 +1,110 @@
 gallery:
     path:  /gallery/{year}/{month}/{day}/{file}
-    defaults: { _controller: App\Krzys\PageBundle\Controller\DefaultController::galleryAction }
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::galleryAction }
+
+pageAdminMonth:
+    path:  /secured/{year}/{month}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::adminAction }
+
+page_admin:
+    path:  /secured
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::adminAction }
+
+page_log:
+    path:  /log/secured
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::logAction }
+
+page:
+    path: /
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }
+
+pageToo:
+    path:  2
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }
+
+pageMonth:
+    path:  /{year}/{month}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }
+
+pageDay:
+    path:  /{year}/{month}/{day}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexOneDayAction }
+
+evolution:
+    path:  /evolution
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::evolutionAction }
+
+pageOneDay:
+    path:  /oneday/{parameter}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::oneDayAction }
+
+session:
+    path:  /session
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::sessionAction }
+
+evolutionNoLinks:
+    path:  /drw
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::evolutionNoLinksAction}
+
+evolutionAdd:
+    path:  /evolutionAdd/{year}/{month}/{day}/{file}/{tag}/{week}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::evolutionAddAction }
+
+best:
+    path:  /best
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::bestAction }
+
+bestNoLinks:
+    path:  /spr
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::bestNoLinksAction }
+
+bestAdd:
+    path:  /bestAdd/{year}/{month}/{day}/{file}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::bestAddAction }
+
+video:
+    path:  /video
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::videoAction }
+
+hide:
+    path:  /hide/{year}/{month}/{day}/{file}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::hideAction }
+
+incoming:
+    path:  /incoming
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::incomingAction }
+
+incomingAmount:
+    path:  /incomingAmount
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::incomingAmountAction }
+
+
+rotate:
+    path:  /rotate/{year}/{month}/{day}/{file}/{degrees}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::rotateAction }
+
+tag:
+    path:  /tag/{year}/{month}/{day}/{file}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::tagAction }
+
+tagAll:
+    path:  /tagAll
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::tagAllAction }
+
+
+description:
+    path:  /description/{year}/{month}/{day}/{file}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::descriptionAction }
+
+logout:
+    path: /logout
+    defaults: { _controller: App\Controller\SecurityController::logout }
+
+
+login:
+    path: /login
+    defaults: { _controller: App\Controller\SecurityController::login }
+
+login_check:
+    path: /login_check
+    defaults: { _controller: App\Controller\SecurityController::loginCheckAction }
