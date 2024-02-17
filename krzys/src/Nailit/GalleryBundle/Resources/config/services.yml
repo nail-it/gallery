@@ -1,20 +1,5 @@
 parameters:
-    #    dir.home: /home/krzysztof/public_html/homepage/Symfony
-    dir.home: /Users/nailit/Sites/krzys4/krzys
-    #    dir.home: /home/tgwozdz/private/workspace/k
-    #    dir.home: /home/gwozdz/workspace/krzys-phpstorm
 
-    dir.images: '%dir.home%/public/gallery/images'
-    dir.videos: '%dir.home%/public/gallery/videos'
-    dir.years: '%dir.home%/public/gallery/images/years'
-    dir.incoming: '%dir.home%/public/gallery/images/incoming/'
-    dir.log: '%dir.home%/app/logs/'
-
-    code.masterkey: krzysiu
-    date.start:
-        year: 2011 #2015
-        month: 10 #12
-        day: 05 #10
 
 services:
 

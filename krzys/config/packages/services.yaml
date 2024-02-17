@@ -1,11 +1,7 @@
 parameters:
     nailit_filesystem.class: Nailit\GalleryBundle\Entity\Filesystem
-    nailit_code.class: Nailit\GalleryBundle\Entity\Code
 
 services:
     nailit_filesystem:
         class:     "%nailit_filesystem.class%"
         arguments: []
-    nailit_code:
-        class:     "%nailit_code.class%"
-        arguments: ["%code.masterkey%"]

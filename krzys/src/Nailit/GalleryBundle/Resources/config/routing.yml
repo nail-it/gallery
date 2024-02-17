@@ -14,18 +14,6 @@ page_log:
     path:  /log/secured
     defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::logAction }
 
-page:
-    path: /
-    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }
-
-pageToo:
-    path:  2
-    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }
-
-pageMonth:
-    path:  /{year}/{month}
-    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }
-
 pageDay:
     path:  /{year}/{month}/{day}
     defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexOneDayAction }
@@ -108,3 +96,15 @@ login:
 login_check:
     path: /login_check
     defaults: { _controller: App\Controller\SecurityController::loginCheckAction }
+
+pageToo:
+    path:  2
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }
+
+pageMonth:
+    path:  /{year}/{month}
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }
+
+page:
+    path: /
+    defaults: { _controller: App\Nailit\GalleryBundle\Controller\DefaultController::indexAction }

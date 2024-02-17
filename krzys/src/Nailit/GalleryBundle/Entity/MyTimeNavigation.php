@@ -14,7 +14,7 @@ class MyTimeNavigation extends MyTime {
 
 	public function __construct($selectedYear = '', $selectedMonth = '') {
 		parent::__construct();
-		$this->selectedTime = mktime(0, 0, 0, $selectedMonth, 1, $selectedYear);
+		$this->selectedTime = mktime(0, 0, 0, (int)$selectedMonth, 1, (int)$selectedYear);
 	}
 
 	public function getNavigation() {

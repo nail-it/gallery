@@ -15,8 +15,7 @@
                 {% if main_path == 'krzys' %}
                     <img src="{{ asset('build/images/logo-DFDFDF.jpg') }}" alt="Krzyś">
                     <h3>
-                        {% block page_subtitle %}
-                        {% endblock %}
+                        {{ page_subtitle }}
                     </h3>
                     <div id="filter" class="right" title="{{ path('session') }}">
                         <div><input type="radio" name="filter" value="0" {% if(app.session.get('tag') == 0) %}checked="checked"{% endif %} />Wszystko</div>
@@ -26,8 +25,7 @@
                 {% else %}
                     <a href="{{ path('page') }}">
                         <h1>
-                            {% block page_subtitle %}
-                            {% endblock %}
+                            {{ page_subtitle }}
                         </h1>
                     </a>
                     <div id="filter" title="{{ path('session') }}">

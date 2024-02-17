@@ -5,7 +5,11 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
   nailit_filesystem.class: Nailit\GalleryBundle\Entity\Filesystem
-  nailit_code.class: Nailit\GalleryBundle\Entity\Code
+
+    #  dir.home: /home/krzysztof/public_html/homepage/Symfony
+  dir.home: /Users/nailit/Sites/krzys4/krzys
+    #  dir.home: /home/tgwozdz/private/workspace/k
+    #  dir.home: /home/gwozdz/workspace/krzys-phpstorm
 
   nailit_gallery_day_from_description: true #false
   nailit_gallery_separate_days: false #true
@@ -14,6 +18,18 @@ parameters:
   nailit_page_subtitle: ...& Zosia ;D #Grzegorz Gwóźdź
   nailit_main_slogan: Oto jesteśmy! #Podróże, małe i duże
   nailit_sort_days: desc #asc
+  code.masterkey: krzysiu
+
+  dir.images: '%dir.home%/public/gallery/images'
+  dir.videos: '%dir.home%/public/gallery/videos'
+  dir.years: '%dir.home%/public/gallery/images/years'
+  dir.incoming: '%dir.home%/public/gallery/images/incoming/'
+  dir.log: '%dir.home%/app/logs/'
+
+  date.start:
+      year: 2011 #2015
+      month: 10 #12
+      day: 05 #10
 
 services:
     # default configuration for services in *this* file

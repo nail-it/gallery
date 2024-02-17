@@ -4,6 +4,7 @@ namespace App\Nailit\GalleryBundle\Controller;
 
 use App\Nailit\GalleryBundle\Entity\Filesystem;
 use App\Nailit\GalleryBundle\Entity\Media;
+use App\Nailit\GalleryBundle\Entity\Code;
 use App\Nailit\GalleryBundle\Entity\MyTimeNavigation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -60,18 +61,23 @@ class DefaultController extends AbstractController
 	}
 */
 	public function oneDayAction($parameter) {
-		try {
-			$this->get('nailit_code')->decode($parameter);
+        $code = new Code($this->getParameter('code.masterkey'));
+
+        try {
+            $code->decode($parameter);
+
+//            $this->getParameter('code.masterkey')->decode($parameter);
 		} catch(\Exception $e) {
 			throw $this->createNotFoundException('Page does not exist');
 		}
-		$day 	= $this->get('nailit_code')->getDay();
-		$month 	= $this->get('nailit_code')->getMonth();
-		$year 	= $this->get('nailit_code')->getYear();
+
+		$day 	= $code->getDay();
+		$month 	= $code->getMonth();
+		$year 	= $code->getYear();
 
         $timeHandler = new MyTimeNavigation($year, $month);
         $timeHandler->getNavigation();
-				
+
 		$files = array();
 		$files = $this->filesystem->setNoLinks(true)->readImagesForOneDayFromFilesystem($files, $this->getParameter('dir.years'), $year, $month, $day);
 		return $this->render(
@@ -87,7 +93,7 @@ class DefaultController extends AbstractController
 	}
 	
     public function indexAction($year = null, $month = null, Filesystem $filesystem = null)
-    {    	     	
+    {
     	$dateStart		= $this->getParameter('date.start');
     	 
     	$year 	= (is_null($year)||$month=='secured')?date('Y'):$year;
