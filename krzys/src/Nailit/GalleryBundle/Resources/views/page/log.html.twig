@@ -1,6 +1,12 @@
 {% extends "@NailitGallery/layout.html.twig" %}
 
-{% block title "Krzyś " %}
+{% block page_title  %}
+    {{ page_title }}
+{% endblock %}
+
+{% block page_subtitle  %}
+    {{ page_subtitle }}
+{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}

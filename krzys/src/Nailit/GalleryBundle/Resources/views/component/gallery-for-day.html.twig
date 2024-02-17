@@ -26,12 +26,12 @@
             <div class="item">        
               <object width="200" height="160"> 
               <param name="movie" value="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf"></param>
-              <param name="flashvars" value="src={{ asset('http://gallery.gwozdz.info/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}"></param>
+              <param name="flashvars" value="src={{ asset('gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}"></param>
               <param name="allowFullScreen" value="true"></param>
               <param name="allowscriptaccess" value="always"></param>
               <param name="wmode" value="opaque"></param>
               <embed src="http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" 
-                allowfullscreen="true" width="200" height="160" flashvars="src={{ asset('http://gallery.gwozdz.info/gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}">
+                allowfullscreen="true" width="200" height="160" flashvars="src={{ asset('gallery/images/years') }}/{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/movie/{{ pic.name }}">
               </embed>
               </object>
               {% if(pic.description != '') %}

@@ -18,6 +18,7 @@ class DefaultController extends AbstractController
 	public $mainSlogan;
 	public $sortDays;
 	public $pageTitle;
+    public $pageSubTitle;
 	public $mainPath;
 	public $requestStack;
 
@@ -27,6 +28,7 @@ class DefaultController extends AbstractController
 		string $mainSlogan,
 		string $sortDays,
 		string $pageTitle,
+        string $pageSubTitle,
 		string $mainPath,
 		RequestStack $requestStack
 	)
@@ -34,6 +36,7 @@ class DefaultController extends AbstractController
 		$this->filesystem = $filesystem;
 		$this->mainSlogan = $mainSlogan;
 		$this->pageTitle = $pageTitle;
+		$this->pageSubTitle = $pageSubTitle;
 		$this->mainPath = $mainPath;
 		$this->requestStack = $requestStack;
 	}
@@ -72,11 +75,13 @@ class DefaultController extends AbstractController
 		$files = array();
 		$files = $this->filesystem->setNoLinks(true)->readImagesForOneDayFromFilesystem($files, $this->getParameter('dir.years'), $year, $month, $day);
 		return $this->render(
-		    'NailitGalleryBundle:Default:index-no-links.html.twig',
+		    '@NailitGallery/page/index-no-links.html.twig',
             array(
                 'files' => $files,
                 'amountDays'     => $timeHandler->getAmountDaysFromMonthBegin(),
-                'amountDays2'     => $timeHandler->getAmountDays2FromMonthBegin()
+                'amountDays2'     => $timeHandler->getAmountDays2FromMonthBegin(),
+                'page_title' => $this->pageTitle,
+                'page_subtitle' => $this->pageSubTitle,
             )
         );
 	}
@@ -104,7 +109,7 @@ class DefaultController extends AbstractController
 		);
 
         return $this->render(
-            '@NailitGallery/Default/index.html.twig',
+            '@NailitGallery/page/index.html.twig',
             array(
                 'files'          => $files, 
                 'selectedYear'   => $year,
@@ -124,7 +129,8 @@ class DefaultController extends AbstractController
 	            'day_description' => 'a',
 	            'separate_days'   => 'b',
 	            'main_slogan' => $this->mainSlogan,
-	            'page_title' => $this->pageTitle
+	            'page_title' => $this->pageTitle,
+	            'page_subtitle' => $this->pageSubTitle,
             )
         );
     }
@@ -152,7 +158,7 @@ class DefaultController extends AbstractController
 		);
 
 		return $this->render(
-			'NailitGalleryBundle:Default:index.html.twig',
+			'@NailitGallery/page/index.html.twig',
 			array(
 				'files'          => $files,
 				'selectedYear'   => $year,
@@ -168,6 +174,8 @@ class DefaultController extends AbstractController
 				'birthMonth'     => $timeHandler->getBirthMonth(),
 				'amountDays'     => $timeHandler->getAmountDaysFromMonthBegin(),
 				'amountDays2'     => $timeHandler->getAmountDays2FromMonthBegin(),
+                'page_title' => $this->pageTitle,
+                'page_subtitle' => $this->pageSubTitle,
 			)
 		);
 	}
@@ -208,13 +216,13 @@ class DefaultController extends AbstractController
     public function bestNoLinksAction() {
 //    	$this->log('best page');
     	$files = $this->filesystem->readBestFromFilesystem($this->getParameter('dir.images'));
-    	return $this->render('NailitGalleryBundle:Default:best-no-links.html.twig', array('files'=>$files));
+    	return $this->render('@NailitGallery/page/best-no-links.html.twig', array('files'=>$files, 'page_title' => $this->pageTitle, 'page_subtitle' => $this->pageSubTitle));
     }
     
     public function bestAction() {
 //    	$this->log('best page');
     	$files = $this->filesystem->readBestFromFilesystem($this->getParameter('dir.images'));
-    	return $this->render('@NailitGallery/Default/best.html.twig', array('files'=>$files));
+    	return $this->render('@NailitGallery/page/best.html.twig', array('files'=>$files, 'page_title' => $this->pageTitle, 'page_subtitle' => $this->pageSubTitle));
     }
     
     public function bestAddAction($year, $month, $day, $file) {
@@ -222,7 +230,7 @@ class DefaultController extends AbstractController
     	symlink($year.'/'.$month.'/'.$day.'/thumb/'.$file, $dirImages.'/best/'.$year.$month.$day.$file);
     	if($this->requestStack->getCurrentRequest()->isXmlHttpRequest()) {
     		$result = array();
-    		$result['image'] = $this->renderView('@NailitGallery/Default/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('@NailitGallery/page/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     		$response->headers->set('Content-Type', 'application/json');
     		return $response;
@@ -231,7 +239,7 @@ class DefaultController extends AbstractController
 
     public function videoAction() {
     	$files = $this->filesystem->readVideoFromFilesystem($this->getParameter('dir.videos'));
-    	return $this->render('@NailitGallery/Default/video.html.twig', array('files'=>$files));
+    	return $this->render('@NailitGallery/page/video.html.twig', array('files'=>$files, 'page_title' => $this->pageTitle, 'page_subtitle' => $this->pageSubTitle));
     }
     
     
@@ -244,7 +252,7 @@ class DefaultController extends AbstractController
     	symlink($year.'/'.$month.'/'.$day.'/thumb/'.$file, $path);
     	if($this->requestStack->getCurrentRequest()->isXmlHttpRequest()) {
     		$result = array();
-    		$result['image'] = $this->renderView('@NailitGallery/Default/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('@NailitGallery/page/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     		$response->headers->set('Content-Type', 'application/json');
     		return $response;
@@ -254,13 +262,13 @@ class DefaultController extends AbstractController
     public function evolutionNoLinksAction() {
 //    	$this->log('evolution no links page');
     	$files = $this->filesystem->readEvolutionFromFilesystem($this->getParameter('dir.images'));
-    	return $this->render('NailitGalleryBundle:Default:evolution-no-links.html.twig', array('files'=>$files));
+    	return $this->render('@NailitGallery/page/evolution-no-links.html.twig', array('files'=>$files, 'page_title' => $this->pageTitle, 'page_subtitle' => $this->pageSubTitle));
     }
     
     public function evolutionAction() {
 //    	$this->log('evolution page');
     	$files = $this->filesystem->readEvolutionFromFilesystem($this->getParameter('dir.images'));
-    	return $this->render('@NailitGallery/Default/evolution.html.twig', array('files'=>$files));
+    	return $this->render('@NailitGallery/page/evolution.html.twig', array('files'=>$files, 'page_title' => $this->pageTitle, 'page_subtitle' => $this->pageSubTitle));
     }
     
     private function applyEvolutionToManager($files, $year, $month) {
@@ -297,21 +305,23 @@ class DefaultController extends AbstractController
         
         $dateStart		= $this->getParameter('date.start');
     	
-    	return $this->render('@NailitGallery/Default/admin.html.twig',
+    	return $this->render('@NailitGallery/page/admin.html.twig',
 		    array(
 				'files'=>$files,
 				'selectedYear'=>$year,
 				'selectedMonth'=>$month,
 				'dateStart'=>$dateStart,
-			    'main_path'=>$this->mainPath
-		    )
+			    'main_path'=>$this->mainPath,
+                'page_title' => $this->pageTitle,
+                'page_subtitle' => $this->pageSubTitle,
+            )
 	    );
     }
     
     public function logAction()
     {
 		$lines = $this->filesystem->readLog($this->getParameter('dir.log'));
-    	return $this->render('@NailitGallery/Default/log.html.twig', array('lines'=>$lines));
+    	return $this->render('@NailitGallery/page/log.html.twig', array('lines'=>$lines));
     }    
     
     public function hideAction($year, $month, $day, $file) {
@@ -361,7 +371,7 @@ class DefaultController extends AbstractController
     	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
     	if($isAjax) {
     		$result = array();
-    		$result['image'] = $this->renderView('@NailitGallery/Default/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('@NailitGallery/page/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     	    $response->headers->set('Content-Type', 'application/json');
     	    return $response;    	

@@ -11,6 +11,7 @@ parameters:
   nailit_gallery_separate_days: false #true
   nailit_main_path: krzys #gallery
   nailit_page_title: Krzyś i Zosia #GGG - Grzegorz Gwóźdź Gallery
+  nailit_page_subtitle: ...& Zosia ;D #Grzegorz Gwóźdź
   nailit_main_slogan: Oto jesteśmy! #Podróże, małe i duże
   nailit_sort_days: desc #asc
 
@@ -26,6 +27,7 @@ services:
           $gallerySeparateDays: '%nailit_gallery_separate_days%'
           $mainPath: '%nailit_main_path%'
           $pageTitle: '%nailit_page_title%'
+          $pageSubTitle: '%nailit_page_subtitle%'
           $mainSlogan: '%nailit_main_slogan%'
           $sortDays: '%nailit_sort_days%'
 

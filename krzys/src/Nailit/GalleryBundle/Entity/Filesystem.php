@@ -154,18 +154,21 @@ class Filesystem {
 			mkdir($dirYears.'/'.$year, 0777);
 		}
 
-		if(!is_null($month)) {
-			if(!file_exists($dirYears.'/'.$year.'/'.$month)) {
-				mkdir($dirYears.'/'.$year.'/'.$month, 0777);
+        $yearMonthPath = $dirYears.'/'.$year.'/'.$month;
+
+        if(!is_null($month)) {
+
+			if(!file_exists($yearMonthPath)) {
+				mkdir($yearMonthPath, 0777);
 			}
 		}
 		
 		if(!is_null($day)) {
-			if(!file_exists($dirYears.'/'.$year.'/'.$month.'/'.$day)) {
-				mkdir($dirYears.'/'.$year.'/'.$month.'/'.$day, 0777);
+			if(!file_exists($yearMonthPath.'/'.$day)) {
+				mkdir($yearMonthPath.'/'.$day, 0777);
 			}
-			if(!file_exists($dirYears.'/'.$year.'/'.$month.'/'.$day.'/thumb')) {
-				mkdir($dirYears.'/'.$year.'/'.$month.'/'.$day.'/thumb', 0777);
+			if(!file_exists($yearMonthPath.'/'.$day.'/thumb')) {
+				mkdir($yearMonthPath.'/'.$day.'/thumb', 0777);
 			}
 		}
 	}
@@ -226,10 +229,12 @@ class Filesystem {
 	}
 	
 	private function readDescription($dirYears, $year, $month, $day, $file) {
-		if(!file_exists($dirYears.'/'.$year.'/'.$month.'/'.$day.'/desc/'.$file.'.txt')) {
+        $yearMonthDayPath = $dirYears.'/'.$year.'/'.$month.'/'.$day;
+
+		if(!file_exists($yearMonthDayPath.'/desc/'.$file.'.txt')) {
 			return '';
 		} else {
-			$filename = $dirYears.'/'.$year.'/'.$month.'/'.$day.'/desc/'.$file.'.txt';
+			$filename = $yearMonthDayPath.'/desc/'.$file.'.txt';
 			if(filesize($filename) > 0 ) {
 				$handle = fopen($filename, "r");
 				$contents = fread($handle, filesize($filename));
@@ -250,10 +255,11 @@ class Filesystem {
 	}	
 	
 	private function readTag($dirYears, $year, $month, $day, $file) {
-		if(file_exists($dirYears.'/'.$year.'/'.$month.'/'.$day.'/tag/1/'.$file.'.txt') === true) {
+        $yearMonthDayPath = $dirYears.'/'.$year.'/'.$month.'/'.$day;
+		if(file_exists($yearMonthDayPath.'/tag/1/'.$file.'.txt') === true) {
 			return '1';
 		} else {
-			if(file_exists($dirYears.'/'.$year.'/'.$month.'/'.$day.'/tag/2/'.$file.'.txt') === true) {
+			if(file_exists($yearMonthDayPath.'/tag/2/'.$file.'.txt') === true) {
 		  		return '2';
 		  	}
 		} 
@@ -262,8 +268,8 @@ class Filesystem {
 	
 	public function readImagesForOneDayFromFilesystem($files, $dirYears, $year, $month, $day, $limit = null) {
 		/* for each day */
-		$path = $dirYears.'/'.$year.'/'.$month.'/'.$day;
-		if ($handleDay = opendir($path.'/thumb')) {
+        $yearMonthDayPath = $dirYears.'/'.$year.'/'.$month.'/'.$day;
+		if ($handleDay = opendir($yearMonthDayPath.'/thumb')) {
 		    $descriptionDayDau = $this->readDescription($dirYears, $year, $month, $day, 'text3');
 		    $descriptionDaySon = $this->readDescription($dirYears, $year, $month, $day, 'text');
 			$descriptionDayMom = $this->readDescription($dirYears, $year, $month, $day, 'text1');
@@ -273,7 +279,7 @@ class Filesystem {
 			while (false !== ($file = readdir($handleDay))) {
 				if ($file != "." && $file != "..") {
 					$tag = $this->readTag($dirYears, $year, $month, $day, $file);
-					list($width, $height) = getimagesize($path.'/thumb/'.$file);
+					list($width, $height) = getimagesize($yearMonthDayPath.'/thumb/'.$file);
 					if(isset($width) && !empty($width) && $width > 285) {
 						$type = 'big-image';
 					} else {
@@ -294,7 +300,7 @@ class Filesystem {
 			    uasort($files[$year][$month][$day], function($a, $b) { return strcmp($a->getName(), $b->getName()); } );
 		}
 		// movie
-		if (file_exists($path.'/movie') && $handleDay = opendir($path.'/movie')) {
+		if (file_exists($yearMonthDayPath.'/movie') && $handleDay = opendir($yearMonthDayPath.'/movie')) {
 			while (false !== ($file = readdir($handleDay))) {
 				if ($file != "." && $file != "..") {
 					if(substr($file, -3, 3) == 'mp4') {
@@ -345,15 +351,6 @@ class Filesystem {
 				krsort($files[$y]);
 			}
 		}
-
-		//     		echo '<pre>';
-		//     		sort($files['2011'][$month]);
-		//     		echo '</pre>';
-	
-		/*
-		 * $files['2011']['10']['day'=>'09', desc='aaa'][]
-		*
-		*/
 
 		return $files;
 	
@@ -426,11 +423,6 @@ class Filesystem {
 	}	
 	
 	public function handleImage($image, $isAjax, $screenWidth, $screenHeight) {
-/*
-		if($isAjax && file_exists($pathToCachedFile)) {
-			return '<img width="'.round($screenWidth).'" src="' . $pathToCachedFile . '" />';
-		}
-*/
 
 		// Get new sizes
     	list($width, $height) = getimagesize($image);

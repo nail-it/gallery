@@ -1,6 +1,12 @@
 {% extends "@NailitGallery/layout.html.twig" %}
 
-{% block title "Krzyś " %}
+{% block page_title  %}
+    {{ page_title }}
+{% endblock %}
+
+{% block page_subtitle  %}
+    {{ page_subtitle }}
+{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('admin') }}
@@ -44,8 +50,8 @@
 
 <br /><br />
 <a href="{{ path('page_log') }}">log</a><br />
-<a href="http://krzys.gwozdz.info/drw">evolution without links</a>(<a href="http://krzys.gwozdz.info/session?tag=1&r=drw">krzys evolution</a>, <a href="http://zosia.gwozdz.info/session?tag=2&r=drw">zosia evolution</a>)<br />
-<a href="http://krzys.gwozdz.info/spr">best without links</a><br />
+<a href="/drw">evolution without links</a>(<a href="/session?tag=1&r=drw">krzys evolution</a>, <a href="/session?tag=2&r=drw">zosia evolution</a>)<br />
+<a href="/spr">best without links</a><br />
 {#    <span class="incoming-process glyphicon glyphicon-user tag-all" id="{{ path('tagAll', { limit: 100000, select: 2 }) }}">Tag all</span><br /> #}
     <span class="incoming-process glyphicon glyphicon-forward" id="{{ path('incomingAmount', {}) }}" title="{{ path('incoming', {}) }}">Process incoming</span> <div id="incoming-block" style="display: none;"><span id="amount-current">0</span>/<span id="amount-all"></span></div>
   <br />
@@ -106,7 +112,7 @@
                     {% if is_granted('ROLE_ADMIN') and pic.name != '' %}
                         <div class="admin-item selected{{ pic.tag }} container-fluid">
                         <span class="admin-picture ui-widget-content ui-corner-tr" id="{{ path('tag', { 'year': pic.year, 'month': pic.month, 'day': pic.day, 'file': pic.name }) }}" title="{{ pic.year }}/{{ pic.month }}/{{ pic.day }}/{{ pic.name }}">
-                        {% include '@NailitGallery/Default/single-image.html.twig' %}
+                        {% include '@NailitGallery/component/single-image.html.twig' %}
                         </span>
                         <div class="actions row">
                         {% if(pic.tag != '') %}

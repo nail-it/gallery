@@ -2,13 +2,6 @@ parameters:
     nailit_filesystem.class: Nailit\GalleryBundle\Entity\Filesystem
     nailit_code.class: Nailit\GalleryBundle\Entity\Code
 
-    nailit_gallery_day_from_description: true #false
-    nailit_gallery_separate_days: false #true
-    nailit_main_path: krzys #gallery
-    nailit_page_title: Krzyś i Zosia #GGG - Grzegorz Gwóźdź Gallery
-    nailit_main_slogan: Oto jesteśmy! #Podróże, małe i duże
-    nailit_sort_days: desc #asc
-
 services:
     nailit_filesystem:
         class:     "%nailit_filesystem.class%"
