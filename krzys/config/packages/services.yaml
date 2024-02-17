@@ -1,7 +1,0 @@
-parameters:
-    nailit_filesystem.class: Nailit\GalleryBundle\Entity\Filesystem
-
-services:
-    nailit_filesystem:
-        class:     "%nailit_filesystem.class%"
-        arguments: []

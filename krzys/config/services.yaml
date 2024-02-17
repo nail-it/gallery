@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-  nailit_filesystem.class: Nailit\GalleryBundle\Entity\Filesystem
+#  nailit_filesystem.class: App\Entity\Filesystem
 
     #  dir.home: /home/krzysztof/public_html/homepage/Symfony
   dir.home: /Users/nailit/Sites/krzys4/krzys
@@ -53,7 +53,6 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Entity/'
             - '../src/Kernel.php'
 
     # controllers are imported separately to make sure services can be injected
@@ -61,6 +60,10 @@ services:
     App\Controller\:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
+
+#    nailit_filesystem:
+#        class: "%nailit_filesystem.class%"
+#        arguments: [ ]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

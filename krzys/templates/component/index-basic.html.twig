@@ -1,0 +1,55 @@
+{% for yearName, year in files %}
+  {% for monthName, month in year %}
+    {% for dayN in (sort_days == 'desc') ? 31..1 : 1..31 %}
+      {% set dayNumber = (dayN < 10) ? '0'~dayN : dayN %}
+	  {% if month[dayNumber] is defined %}
+    	{% set day = month[dayNumber] %}
+		  {% if(day[0].name != '') %}
+			  {% if day_description %}
+				  <div class="date">
+					  <a {% if(separate_days) %} href="{{ path('pageDay', { 'year': yearName, 'month': monthName, 'day': dayNumber } ) }}"{% endif %} name="{{ amountDays+dayN-1 }}">{{ dayNumber }}.{{ monthName }}.{{ yearName }}</a> <a name="{{ amountDays2+dayN-1 }}"></a>
+					  <span class="day-no" title="zarywamy nocki od {{ day[0].amountDays }} dni">dzień {{ day[0].amountDays }} ({{ day[0].amountWeeks }} tydzień)
+						{% if day[0].amountDays2 <= 0  or hide is defined %}
+						  Krzysia
+						{% else %}
+						  <a href="{{ path('pageMonth', { 'year': day[0].yearForAmountDays2, 'month': day[0].monthForAmountDays2 }) }}#{{ day[0].amountDays2 }}" class="medium">Krzysia</a>
+						{% endif %}
+						, dzień {{ day[0].amountDays2 }} ({{ day[0].amountWeeks2 }} tydzień)
+						{% if day[0].monthForAmountDays is null or day[0].yearForAmountDays is null or hide is defined %}
+						  Zosi
+						{% else %}
+						  <a href="{{ path('pageMonth', { 'year': day[0].yearForAmountDays, 'month': day[0].monthForAmountDays }) }}#{{ day[0].amountDays }}" class="medium">Zosi</a>
+						{% endif %}
+						</span>
+				  </div>
+				{% else %}
+					<div class="date">
+						<a {% if(separate_days) %} href="{{ path('pageDay', { 'year': yearName, 'month': monthName, 'day': dayNumber } ) }}"{% endif %} name="{{ amountDays+dayN-1 }}">{{ dayNumber }}.{{ monthName }}.{{ yearName }}</a> <a name="{{ amountDays2+dayN-1 }}"></a>
+					</div>
+			  {% endif %}
+
+		  {% if(day[0].descriptionDayDau != '') %}
+		    <div class="dau description-day"><span class="avatar avatar-dau"></span><div class="day-description">{{ day[0].descriptionDayDau | raw }}</div></div>
+		  {% endif %}
+		  {% if(day[0].descriptionDaySon != '') %}
+		    <div class="son description-day"><span class="avatar avatar-son"></span><div class="day-description">{{ day[0].descriptionDaySon | raw }}</div></div>
+		  {% endif %}
+		  {% if(day[0].descriptionDayMom != '') %}
+		    <div class="mom description-day"><span class="avatar avatar-mom"></span><div class="day-description">{{ day[0].descriptionDayMom | raw }}</div></div>
+		  {% endif %}
+		  {% if(day[0].descriptionDayDad != '') %}
+		    <div class="dad description-day"><span class="avatar avatar-dad"></span><div class="day-description">{{ day[0].descriptionDayDad | raw }}</div></div>
+		  {% endif %}
+		  {% include 'component/gallery-for-day.html.twig' %}
+		{% endif %}
+	  {% else %}
+        <div class="date hidden">
+      	  <a name="{{ amountDays+dayN-1 }}">{{ dayNumber }}.{{ monthName }}.{{ yearName }}</a> <a name="{{ amountDays2+dayN-1 }}">{{ dayNumber }}.{{ monthName }}.{{ yearName }}</a>
+  	    </div>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% else %}
+    Zdjęcia nie znaleziono.
+{% endfor %}
+<div id="bottom"></div>
