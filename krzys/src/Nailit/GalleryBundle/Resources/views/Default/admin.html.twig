@@ -2,6 +2,10 @@
 
 {% block title "Krzyś " %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
 {% block content_header '' %}
 
 {% block content %}
@@ -130,5 +134,9 @@
 </div>
 <p id="alert" class="bg-success"></p>
 <div id="bottom"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin') }}
 {% endblock %}
 

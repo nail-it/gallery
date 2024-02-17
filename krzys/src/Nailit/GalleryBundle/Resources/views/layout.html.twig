@@ -3,21 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="{{ asset('bundles/krzyspage/css/style.css') }}" type="text/css" media="all" />
-    <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox.css') }}" type="text/css" media="all" />
-    <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox-buttons.css') }}" type="text/css" media="all" />
-    <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox-thumbs.css') }}" type="text/css" media="all" />
-    <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/bootstrap.min.css') }}" type="text/css" media="all" />
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley" />
-    <script src="{{ asset('bundles/krzyspage/js/jquery-1.11.3.min.js') }}" /></script>
-    <script src="{{ asset('bundles/krzyspage/js/jquery-ui.min.js') }}" /></script>
-    <script src="{{ asset('bundles/krzyspage/js/jquery.mousewheel-3.0.6.pack.js') }}" /></script>
-    <script src="{{ asset('bundles/nailitgallery/js/jquery.fancybox.js') }}" /></script>
-    <script src="{{ asset('bundles/nailitgallery/js/jquery.fancybox.pack.js') }}" /></script>
-    <script src="{{ asset('bundles/nailitgallery/js/jquery.fancybox-buttons.js') }}" /></script>
-    <script src="{{ asset('bundles/nailitgallery/js/jquery.fancybox-thumbs.js') }}" /></script>
-    <script src="{{ asset('bundles/krzyspage/js/functions1.js') }}" /></script>
-    <script src="{{ asset('bundles/nailitgallery/js/bootstrap.min.js') }}" /></script>
     <title>
         {% block page_title %}
         {% endblock %}
@@ -29,7 +18,7 @@
     <div id="symfony-header">
 
         <a>
-            <img src="{{ asset('bundles/krzyspage/images/logo-DFDFDF.jpg') }}" alt="Krzyś">
+            <img src="{{ asset('build/images/logo-DFDFDF.jpg') }}" alt="Krzyś">
         </a>
         <h3>...& Zosia ;D</h3>
         <div id="filter" class="right" title="{{ path('session') }}">
@@ -66,4 +55,6 @@
 
 </div>
 </body>
+{% block javascripts %}
+{% endblock %}
 </html>

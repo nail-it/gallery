@@ -3,25 +3,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="{{ asset('bundles/krzyspage/css/style.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox-buttons.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/jquery.fancybox-thumbs.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('bundles/nailitgallery/css/bootstrap.min.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley" />        
-{% javascripts
-    '@NailitGalleryBundle/Resources/public/js/jquery-1.11.3.min.js'
-    '@NailitGalleryBundle/Resources/public/js/jquery-ui.min.js'
-	'@NailitGalleryBundle/Resources/public/js/jquery.mousewheel-3.0.6.pack.js'
-	'@NailitGalleryBundle/Resources/public/js/jquery.fancybox.js'
-	'@NailitGalleryBundle/Resources/public/js/jquery.fancybox.pack.js'
-	'@NailitGalleryBundle/Resources/public/js/jquery.fancybox-buttons.js'
-	'@NailitGalleryBundle/Resources/public/js/jquery.fancybox-thumbs.js'    
-    '@NailitGalleryBundle/Resources/public/js/functions1.js'
-    '@NailitGalleryBundle/Resources/public/js/bootstrap.min.js'
-%}
-<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+        {% block stylesheets %}
+        {% endblock %}
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Qwigley" />
         <title>{{ page_title }}</title>
         <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
     </head>
@@ -29,7 +13,7 @@
         <div id="symfony-wrapper">
             <div id="symfony-header">
                 {% if main_path == 'krzys' %}
-                    <img src="{{ asset('bundles/krzyspage/images/logo-DFDFDF.jpg') }}" alt="Krzyś">
+                    <img src="{{ asset('build/images/logo-DFDFDF.jpg') }}" alt="Krzyś">
                     <h3>...& Zosia ;D</h3>
                     <div id="filter" class="right" title="{{ path('session') }}">
                         <div><input type="radio" name="filter" value="0" {% if(app.session.get('tag') == 0) %}checked="checked"{% endif %} />Wszystko</div>
@@ -66,4 +50,5 @@
             
         </div>
     </body>
+    {% block javascripts %}{% endblock %}
 </html>

@@ -94,7 +94,7 @@ class DefaultController extends AbstractController
     	$timeHandler = new MyTimeNavigation($year, $month);
     	$timeHandler->getNavigation();
 
-    	$this->logAction('main page '.$year.' '.$month);
+//    	$this->logAction('main page '.$year.' '.$month);
     	$files = $filesystem->readImagesFromFilesystem(
 			$this->getParameter('dir.years'),
 			$year,
@@ -107,7 +107,7 @@ class DefaultController extends AbstractController
             '@NailitGallery/Default/index.html.twig',
             array(
                 'files'          => $files, 
-                'selectedYear'   => $year, 
+                'selectedYear'   => $year,
                 'selectedMonth'  => $month, 
             	'dateStart'      => $dateStart,
                 'nowYear'        => date('Y'),

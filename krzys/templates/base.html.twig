@@ -6,15 +6,16 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{ asset('build/app.css') }}"
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
-
-        {% block javascripts %}
-            <script src="{{ asset('build/app.js') }}"
+{#            {{ encore_entry_link_tags('app') }}#}
         {% endblock %}
     </head>
     <body>
+    test page
         {% block body %}{% endblock %}
     </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 </html>

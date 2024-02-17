@@ -4,10 +4,10 @@ parameters:
     #    dir.home: /home/tgwozdz/private/workspace/k
     #    dir.home: /home/gwozdz/workspace/krzys-phpstorm
 
-    dir.images: '%dir.home%/public/web/gallery/images'
-    dir.videos: '%dir.home%/public/web/gallery/videos'
-    dir.years: '%dir.home%/public/web/gallery/images/years'
-    dir.incoming: '%dir.home%/public/web/gallery/images/incoming/'
+    dir.images: '%dir.home%/public/gallery/images'
+    dir.videos: '%dir.home%/public/gallery/videos'
+    dir.years: '%dir.home%/public/gallery/images/years'
+    dir.incoming: '%dir.home%/public/gallery/images/incoming/'
     dir.log: '%dir.home%/app/logs/'
 
     code.masterkey: krzysiu
