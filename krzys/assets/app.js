@@ -6,9 +6,9 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('./bundles/nailitgallery/css/style.css');
-require('./bundles/nailitgallery/css/jquery.fancybox.css');
-require('./bundles/nailitgallery/css/bootstrap.min.css');
+require('./css/style.css');
+require('./css/jquery.fancybox.css');
+require('./css/bootstrap.min.css');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // import $ from 'jquery';
@@ -16,5 +16,5 @@ require('./bundles/nailitgallery/css/bootstrap.min.css');
 const $ = require('jquery');
 global.$ = global.jQuery = $;
 
-require('./bundles/nailitgallery/js/jquery.fancybox.js');
-require('./bundles/nailitgallery/js/functions.js');
+require('./js/jquery.fancybox.js');
+require('./js/functions.js');

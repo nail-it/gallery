@@ -236,7 +236,7 @@ class DefaultController extends AbstractController
     	symlink($year.'/'.$month.'/'.$day.'/thumb/'.$file, $dirImages.'/best/'.$year.$month.$day.$file);
     	if($this->requestStack->getCurrentRequest()->isXmlHttpRequest()) {
     		$result = array();
-    		$result['image'] = $this->renderView('page/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('component/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     		$response->headers->set('Content-Type', 'application/json');
     		return $response;
@@ -258,7 +258,7 @@ class DefaultController extends AbstractController
     	symlink($year.'/'.$month.'/'.$day.'/thumb/'.$file, $path);
     	if($this->requestStack->getCurrentRequest()->isXmlHttpRequest()) {
     		$result = array();
-    		$result['image'] = $this->renderView('page/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('component/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     		$response->headers->set('Content-Type', 'application/json');
     		return $response;
@@ -373,11 +373,10 @@ class DefaultController extends AbstractController
     	unlink($incoming);
     	imagejpeg($rotate, $newpath, 100);
     	
-//    	$request = Request::createFromGlobals();
     	$isAjax = $this->requestStack->getCurrentRequest()->isXmlHttpRequest();
     	if($isAjax) {
     		$result = array();
-    		$result['image'] = $this->renderView('page/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
+    		$result['image'] = $this->renderView('component/single-image.html.twig', array('pic'=>new Media($year, $month, $day, $file, '', '', '', '', '', '', 'image')));
     		$response = new Response(json_encode($result));
     	    $response->headers->set('Content-Type', 'application/json');
     	    return $response;    	
