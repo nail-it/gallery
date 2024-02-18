@@ -4,18 +4,14 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-#  nailit_filesystem.class: App\Entity\Filesystem
-
     #  dir.home: /home/krzysztof/public_html/homepage/Symfony
-  dir.home: /Users/nailit/Sites/krzys4/krzys
-    #  dir.home: /home/tgwozdz/private/workspace/k
-    #  dir.home: /home/gwozdz/workspace/krzys-phpstorm
+  dir.home: /Users/nailit/Sites/gallery
 
   nailit_gallery_day_from_description: true #false
   nailit_gallery_separate_days: false #true
   nailit_main_path: krzys #gallery
-  nailit_page_title: Krzyś i Zosia #GGG - Grzegorz Gwóźdź Gallery
-  nailit_page_subtitle: ...& Zosia ;D #Grzegorz Gwóźdź
+  nailit_page_title: Krzyś i Zosia #Gallery
+  nailit_page_subtitle: ...& Zosia ;D #Own gallery
   nailit_main_slogan: Oto jesteśmy! #Podróże, małe i duże
   nailit_sort_days: desc #asc
   code.masterkey: krzysiu
