@@ -91,6 +91,13 @@ abstract class AbstractMedia {
 		$this->amountWeeks2 = $amountWeeks2;
 		return $this;
 	}
+	public function getYearForAmountDays() {
+		return $this->yearForAmountDays;
+	}
+	public function setYearForAmountDays($yearForAmountDays) {
+		$this->yearForAmountDays = $yearForAmountDays;
+		return $this;
+	}
 	public function getYearForAmountDays2() {
 		return $this->yearForAmountDays2;
 	}

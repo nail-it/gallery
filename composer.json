@@ -2,7 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^8.2.15",
+        "php": "^8.1.2",
         "ext-iconv": "*",
         "phpdocumentor/reflection-docblock": "^5.3",
         "symfony/asset": "^v5.4.35",
